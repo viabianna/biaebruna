@@ -1,0 +1,72 @@
+---
+title: "lista 3 - descritiva"
+output: pdf_document
+---
+Lista 3 - Estat?stica Descritiva
+Professora: M?rcia D'Elia Branco
+Nomes:
+    Bruna Umino
+    Breatriz Vianna
+
+```{r}
+ano<-c(1942,1943,1944,1945,1946,1947,1948,1949,1950,1951,
+       1952,1953,1954,1955,1956,1957,1958,1959,1960,1961)
+
+colheita<-c(6409, 19835, 10939, 7826, 7165, 7807, 6028, 6037, 6458, 6981,
+            4233, 8790, 8959, 8289, 7910, 6775, 6088, 6381, 8600, 4805)
+
+preco<-c(2.26, 1.64, 1.52, 2.29, 3.54, 2.09, 2.46, 2.50, 2.62, 2.57,
+         3.38, 2.02, 1.68, 1.78, 1.99, 3.02, 3.23, 2.98, 2.74, 3.38)
+tabela <- data.frame(ano, colheita, preco)
+#Quest?o 1a
+#Gr?fico de dispers?o
+plot( colheita ~ preco, xlab = "Pre?o (escudos/litro)", ylab = "Colheita (em milhares de hectolitros)", main = "Gr?fico de dispers?o")
+
+#Correla??o linear 
+cor(preco, colheita)
+```
+  Como podemos observar o gr?fico apresenta uma correla??o linear significativa e negativa (ou seja, quanto menor a colheita, mais alto fica o pre?o), que est? sendo influenciada pelo dado do ano de 1943, devido a este valor, a correla??o est? mais elevada.
+
+1b
+```{r}
+plot( colheita ~ preco, xlab = "Pre?o (escudos/litro)", ylab = "Colheita (em milhares de hectolitros)",main = "Gr?fico de dispers?o com reta de regress?o")
+abline(lm (colheita ~ preco))
+lm (colheita ~ preco)
+
+```
+  Dado que o resultado do coeficiente angular foi igual a -3219, podemos observar que consiste em um valor negativo, ou seja, o pre?o e a colheita s?o inversamente proporcionais.
+  
+1c
+```{r}
+lm(preco~colheita)
+residuos <- resid(lm(preco~colheita))
+plot(colheita, residuos,  ylab="Residuos", xlab="Colheita", main="Gr?fico de res?duos") 
+abline(0,0)
+```
+  COMENTAR!!!!!!!!!!!!!
+  
+1d
+```{r}
+#diminuir o grafico
+par(mar=c(4,4,4,4))
+#grafico de disperssao ano x colheita
+plot (colheita~ano, type="o", col="darkorchid3", ylab = "", pch=16, main = "Gr?fico colheita x ano x pre?o")
+#legendas
+mtext("Colheita", side = 2, line = 2.5, col="darkorchid3")
+par(new=TRUE)
+#grafico de disperssao ano x pre?o
+plot(preco~ano, axes=FALSE, type='o', col='deeppink2', ann=FALSE, pch=16)
+#legendas
+mtext("Pre?o", side = 4, line = 2.5, col="deeppink2")
+axis(4)
+```
+  COMENTAR!!!!!!!!!!!!!!!!!!!!
+  Atrav?s dos gr?ficos podemos observar que ocoreu uma consider?vel colheita no ano de 1943, que resultou no pior pre?o e no ano de 1952 ocorreu a menor colheita deste intervalo de tempo, o resto dos valores coletados est?o na faixa de 5000 a 10900 milhares de hectolitros. Em rela??o ao pre?o h? picos noa anos de 1946, 1961, 1952 e 1958, que s?o os anos os quais ocorreram as piores colheitas e nos anos de 1944, 1943 e 1954, foi relatado os menores pre?os.
+  
+1e
+```{r}
+qqnorm(residuos, main = "Gr?fico de probabilidades normais", xlab = "Quantis te?ricos", ylab = "Quantis amostrais")
+qqline(residuos, col="red")
+```
+  ANALISAR!!!!!!!!!!!!!!!!!!!!
+
