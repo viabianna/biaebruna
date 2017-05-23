@@ -70,3 +70,9 @@ qqline(residuos, col="red")
 ```
   ANALISAR!!!!!!!!!!!!!!!!!!!!
 
+Questao 2
+2a
+```{r}
+plot(dados$)
+```
+
