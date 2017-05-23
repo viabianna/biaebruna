@@ -2,12 +2,12 @@
 title: "lista 3 - descritiva"
 output: pdf_document
 ---
-Lista 3 - Estat?stica Descritiva
-Professora: M?rcia D'Elia Branco
-Nomes:
-    Bruna Umino
-    Breatriz Vianna
-
+<p>Lista 3 - Estatística Descritiva
+<p>Professora: Márcia D'Elia Branco
+<p>Nomes:
+<p>     Bruna Umino
+<p>     Breatriz Vianna
+<p>
 ```{r}
 ano<-c(1942,1943,1944,1945,1946,1947,1948,1949,1950,1951,
        1952,1953,1954,1955,1956,1957,1958,1959,1960,1961)
@@ -18,39 +18,42 @@ colheita<-c(6409, 19835, 10939, 7826, 7165, 7807, 6028, 6037, 6458, 6981,
 preco<-c(2.26, 1.64, 1.52, 2.29, 3.54, 2.09, 2.46, 2.50, 2.62, 2.57,
          3.38, 2.02, 1.68, 1.78, 1.99, 3.02, 3.23, 2.98, 2.74, 3.38)
 tabela <- data.frame(ano, colheita, preco)
-#Quest?o 1a
-#Gr?fico de dispers?o
-plot( colheita ~ preco, xlab = "Pre?o (escudos/litro)", ylab = "Colheita (em milhares de hectolitros)", main = "Gr?fico de dispers?o")
+#Questao 1a
+#Grafico de dispersao
+plot( colheita ~ preco, xlab = "Preco (escudos/litro)", ylab = "Colheita (em milhares de hectolitros)", main = "Grafico de dispersao")
 
-#Correla??o linear 
+#Correlacao linear 
 cor(preco, colheita)
 ```
-  Como podemos observar o gr?fico apresenta uma correla??o linear significativa e negativa (ou seja, quanto menor a colheita, mais alto fica o pre?o), que est? sendo influenciada pelo dado do ano de 1943, devido a este valor, a correla??o est? mais elevada.
+<p>  Como podemos observar o gráfico apresenta uma correlação linear significativa e negativa (ou seja, quanto menor a colheita, mais alto fica o preço), que está sendo influenciada pelo dado do ano de 1943, devido a este valor, a correlação está mais elevada.
 
-1b
+#1b
+<p>
 ```{r}
 plot( colheita ~ preco, xlab = "Pre?o (escudos/litro)", ylab = "Colheita (em milhares de hectolitros)",main = "Gr?fico de dispers?o com reta de regress?o")
 abline(lm (colheita ~ preco))
 lm (colheita ~ preco)
 
 ```
-  Dado que o resultado do coeficiente angular foi igual a -3219, podemos observar que consiste em um valor negativo, ou seja, o pre?o e a colheita s?o inversamente proporcionais.
-  
-1c
+<p>  Dado que o resultado do coeficiente angular foi igual a -3219, podemos observar que consiste em um valor negativo, ou seja, o preço e a colheita são inversamente proporcionais.
+<br />  
+#1c
+<p>
 ```{r}
 lm(preco~colheita)
 residuos <- resid(lm(preco~colheita))
-plot(colheita, residuos,  ylab="Residuos", xlab="Colheita", main="Gr?fico de res?duos") 
+plot(colheita, residuos,  ylab="Residuos", xlab="Colheita", main="Gráfico de resíduos") 
 abline(0,0)
 ```
-  COMENTAR!!!!!!!!!!!!!
-  
-1d
+<p>  COMENTAR!!!!!!!!!!!!!
+<br />  
+#1d
+<p>
 ```{r}
 #diminuir o grafico
 par(mar=c(4,4,4,4))
 #grafico de disperssao ano x colheita
-plot (colheita~ano, type="o", col="darkorchid3", ylab = "", pch=16, main = "Gr?fico colheita x ano x pre?o")
+plot (colheita~ano, type="o", col="darkorchid3", ylab = "", pch=16, main = "Gráfico colheita x ano x preço")
 #legendas
 mtext("Colheita", side = 2, line = 2.5, col="darkorchid3")
 par(new=TRUE)
@@ -73,6 +76,19 @@ qqline(residuos, col="red")
 Questao 2
 2a
 ```{r}
-plot(dados$)
+dados <- read.csv2("/home/be/viabianna/Downloads/dadosmalariaCEA15P14.csv")
+#Retirar os dados que contém N/A
+dados <- subset(dados, !is.na(pc))
+dados <- subset(dados, !is.na(peso))
+dados <- subset(dados, !is.na(est))
+#Gráfico de Dispersão Perímetro Cefálico x Peso
+plot(dados$pc~dados$peso, xlab="Perímetro Cefálico", ylab="Peso", main= "Gráfico de Dispersão Perímetro Cefálico x Peso")
+#Correlação Perímetro Cefálico x Peso
+cor(dados$pc,dados$peso)
+#Gráfico de Dispersão Perímetro Cefálico x Estatura
+plot(dados$pc~dados$est, xlab="Perímetro Cefálico", ylab="Estatura", main= "Gráfico de Dispersão Perímetro Cefálico x Estatura")
+#Correlação Perímetro Cefálico x Estatura
+cor(dados$pc,dados$est)
+
 ```
 
