@@ -149,3 +149,23 @@ ggplot(data = dados2, aes(x = dados2$dados.pc, y =dados2$dados.peso, colour = le
 
 ```
 
+#2d
+<p>
+```{r}
+#tabela com o grupo da gestante,o Perimetro cefalico,a idade da gestante
+dados3 <- data.frame( dados$grupo, dados$pc, dados$idade)
+#trocar para 0 não infectadas e 1 infectadas
+dadosgrupo <- vector(length=length(dados3$dados.grupo))
+dadosgrupo[which(dados3$dados.grupo!=0)] <- 1
+dados3$dados.grupo <- dadosgrupo
+#trocar para 0 até 35 anos e 1 mais de 35 anos
+dadosgrupo2 <- vector(length=length(dados3$dados.idade))
+dadosgrupo2[which(dados3$dados.idade<=35)] <- 0
+dadosgrupo2[which(dados3$dados.idade>35)] <- 1
+dados3$idadecat<- dadosgrupo2
+fit1 <- lm(dados3$dados.pc~dados3$dados.grupo+dados3$idadecat)
+summary(fit1)
+par(mfrow=c(2,2))
+plot(fit1, caption = c("Resíduos x Ajustados", "QQ-Plot Normal","Locação e Escala", "resìduos e alavancagem"))
+```
+
