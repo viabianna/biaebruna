@@ -70,7 +70,7 @@ axis(4)
   COMENTAR!!!!!!!!!!!!!!!!!!!!
   Atrav?s dos gr?ficos podemos observar que ocoreu uma consider?vel colheita no ano de 1943, que resultou no pior pre?o e no ano de 1952 ocorreu a menor colheita deste intervalo de tempo, o resto dos valores coletados est?o na faixa de 5000 a 10900 milhares de hectolitros. Em rela??o ao pre?o h? picos noa anos de 1946, 1961, 1952 e 1958, que s?o os anos os quais ocorreram as piores colheitas e nos anos de 1944, 1943 e 1954, foi relatado os menores pre?os.
   
-1e
+#1e
 ```{r}
 qqnorm(residuos, main = "Gr?fico de probabilidades normais", xlab = "Quantis te?ricos", ylab = "Quantis amostrais")
 qqline(residuos, col="red")
