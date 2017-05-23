@@ -7,11 +7,10 @@ output: pdf_document
 <p>Nomes:
 <p>     Bruna Umino
 <p>     Beatriz Vianna
-<br />
-#Exercício 1
+
+#Questão 1
 <p>
-#1a
-<p>
+
 ```{r}
 ano<-c(1942,1943,1944,1945,1946,1947,1948,1949,1950,1951,
        1952,1953,1954,1955,1956,1957,1958,1959,1960,1961)
@@ -22,26 +21,38 @@ colheita<-c(6409, 19835, 10939, 7826, 7165, 7807, 6028, 6037, 6458, 6981,
 preco<-c(2.26, 1.64, 1.52, 2.29, 3.54, 2.09, 2.46, 2.50, 2.62, 2.57,
          3.38, 2.02, 1.68, 1.78, 1.99, 3.02, 3.23, 2.98, 2.74, 3.38)
 tabela <- data.frame(ano, colheita, preco)
-#Questao 1a
+```
+<p>
+#1a)
+<p>
+```{r}
 #Grafico de dispersao
-plot( colheita ~ preco, xlab = "Preco (escudos/litro)", ylab = "Colheita (em milhares de hectolitros)", main = "Grafico de dispersao")
+plot( colheita ~ preco, 
+      xlab = "Preco (escudos/litro)",
+      ylab = "Colheita (em milhares de hectolitros)",
+      main = "Grafico de dispersao")
+```
 
+```{r}
 #Correlacao linear 
 cor(preco, colheita)
 ```
-<p>  Como podemos observar o gráfico apresenta uma correlação linear significativa e negativa (ou seja, quanto menor a colheita, mais alto fica o preço), que está sendo influenciada pelo dado do ano de 1943, devido a este valor, a correlação está mais elevada.
+<p>  Como podemos observar, o gráfico apresenta uma correlação linear significativa e negativa (ou seja, quanto menor a colheita, mais alto fica o preço), que está sendo influenciada pelo dado do ano de 1943. Devido a este valor, a correlação está mais elevada.
 
-#1b
+#1b)
 <p>
 ```{r}
-plot( colheita ~ preco, xlab = "Pre?o (escudos/litro)", ylab = "Colheita (em milhares de hectolitros)",main = "Gr?fico de dispers?o com reta de regress?o")
+plot( colheita ~ preco, 
+      xlab = "Pre?o (escudos/litro)",
+      ylab = "Colheita (em milhares de hectolitros)",
+      main = "Gráfico de dispersão com reta de regressão")
 abline(lm (colheita ~ preco))
 lm (colheita ~ preco)
 
 ```
 <p>  Dado que o resultado do coeficiente angular foi igual a -3219, podemos observar que consiste em um valor negativo, ou seja, o preço e a colheita são inversamente proporcionais.
-<br />  
-#1c
+ 
+#1c)
 <p>
 ```{r}
 lm(preco~colheita)
@@ -50,35 +61,40 @@ plot(colheita, residuos,  ylab="Residuos", xlab="Colheita", main="Gráfico de re
 abline(0,0)
 ```
 <p>  COMENTAR!!!!!!!!!!!!!
-<br />  
-#1d
+
+#1d)
 <p>
 ```{r}
-#diminuir o grafico
 par(mar=c(4,4,4,4))
-#grafico de disperssao ano x colheita
+#grafico de dispersão ano x colheita
 plot (colheita~ano, type="o", col="darkorchid3", ylab = "", pch=16, main = "Gráfico colheita x ano x preço")
-#legendas
 mtext("Colheita", side = 2, line = 2.5, col="darkorchid3")
 par(new=TRUE)
-#grafico de disperssao ano x pre?o
+```
+
+```{r}
+#grafico de dispersão ano x preço
 plot(preco~ano, axes=FALSE, type='o', col='deeppink2', ann=FALSE, pch=16)
-#legendas
 mtext("Pre?o", side = 4, line = 2.5, col="deeppink2")
 axis(4)
 ```
   COMENTAR!!!!!!!!!!!!!!!!!!!!
-  Atrav?s dos gr?ficos podemos observar que ocoreu uma consider?vel colheita no ano de 1943, que resultou no pior pre?o e no ano de 1952 ocorreu a menor colheita deste intervalo de tempo, o resto dos valores coletados est?o na faixa de 5000 a 10900 milhares de hectolitros. Em rela??o ao pre?o h? picos noa anos de 1946, 1961, 1952 e 1958, que s?o os anos os quais ocorreram as piores colheitas e nos anos de 1944, 1943 e 1954, foi relatado os menores pre?os.
+  Através dos gráficos podemos observar que ocoreu uma considerável colheita no ano de 1943, que resultou no pior preço e no ano de 1952 ocorreu a menor colheita deste intervalo de tempo. O resto dos valores coletados está na faixa de 5000 a 10900 milhares de hectolitros. Em relação ao preço, há picos nos anos de 1946, 1961, 1952 e 1958, que são os anos nos quais ocorreram as piores colheitas, e nos anos de 1944, 1943 e 1954, quando foram relatados os menores preços.
   
-#1e
+#1e)
+<p>
 ```{r}
-qqnorm(residuos, main = "Gr?fico de probabilidades normais", xlab = "Quantis te?ricos", ylab = "Quantis amostrais")
+qqnorm(residuos, 
+       main = "Gr?fico de probabilidades normais", 
+       xlab = "Quantis te?ricos", 
+       ylab = "Quantis amostrais")
 qqline(residuos, col="red")
 ```
   ANALISAR!!!!!!!!!!!!!!!!!!!!
 
 #Questao 2
-#2a
+
+#2a)
 ```{r, results="hide"} 
 library (magrittr)
 dados <- read.csv2("/home/be/viabianna/Downloads/dadosmalariaCEA15P14.csv")
@@ -86,7 +102,7 @@ dados <- read.csv2("/home/be/viabianna/Downloads/dadosmalariaCEA15P14.csv")
 dados %>% subset(!is.na(pc)) %>% subset(!is.na(peso)) %>% subset(!is.na(est))
 
 ```
-
+<p>
 ```{r}
 #Gráfico de Dispersão Perímetro Cefálico x Peso
 plot(dados$pc~dados$peso, xlab="Perímetro Cefálico", ylab="Peso", main= "Gráfico de Dispersão Perímetro Cefálico x Peso")
@@ -98,8 +114,8 @@ plot(dados$pc~dados$est, xlab="Perímetro Cefálico", ylab="Estatura", main= "Gr
 cor(dados$pc,dados$est)
 
 ```
-<br />
-#2b
+
+#2b)
 <p>
 ```{r}
 equação <- (lm(dados$pc~dados$peso))
@@ -131,17 +147,23 @@ $y= 0.482 * 50 + 10.21$
 <p>
 $y= 34.31$
 <br />
-#2c
+#2c)
 <p>
 ```{r}
+#organização dos dados a serem usados,
+#transformar grupo em variável binária
 dados2 <- data.frame(dados$peso, dados$grupo, dados$pc)
 dadosgrupo <- vector(length=length(dados2$dados.grupo))
 dadosgrupo[which(dados2$dados.grupo!=0)] <- 'Infectada'
 dadosgrupo[which(dados2$dados.grupo==0)] <- "Não Infectada"
 dados2$dados.grupo <- dadosgrupo
+```
+<p>
+```{r}
 library(ggplot2)
 legenda <- as.factor(dados2$dados.grupo)
-ggplot(data = dados2, aes(x = dados2$dados.pc, y =dados2$dados.peso, colour = legenda)) +
+ggplot(data = dados2, 
+      aes(x = dados2$dados.pc, y =dados2$dados.peso, colour = legenda)) +
       geom_point()+
       xlab("Perímetro Cefálico")+
       ylab("Peso")+
@@ -149,23 +171,30 @@ ggplot(data = dados2, aes(x = dados2$dados.pc, y =dados2$dados.peso, colour = le
 
 ```
 
-#2d
+#2d)
 <p>
 ```{r}
-#tabela com o grupo da gestante,o Perimetro cefalico,a idade da gestante
+#organização dos dados a serem utilizados, transformar grupo em binário
+#transformar idade em binária (maior que 35/ menor ou igual a 35)
 dados3 <- data.frame( dados$grupo, dados$pc, dados$idade)
-#trocar para 0 não infectadas e 1 infectadas
 dadosgrupo <- vector(length=length(dados3$dados.grupo))
 dadosgrupo[which(dados3$dados.grupo!=0)] <- 1
 dados3$dados.grupo <- dadosgrupo
-#trocar para 0 até 35 anos e 1 mais de 35 anos
 dadosgrupo2 <- vector(length=length(dados3$dados.idade))
 dadosgrupo2[which(dados3$dados.idade<=35)] <- 0
 dadosgrupo2[which(dados3$dados.idade>35)] <- 1
 dados3$idadecat<- dadosgrupo2
+```
+<p>
+```{r}
 fit1 <- lm(dados3$dados.pc~dados3$dados.grupo+dados3$idadecat)
 summary(fit1)
 par(mfrow=c(2,2))
-plot(fit1, caption = c("Resíduos x Ajustados", "QQ-Plot Normal","Locação e Escala", "resìduos e alavancagem"))
+plot(fit1, caption = c("Resíduos x Ajustados", "QQ-Plot Normal",
+                       "Locação e Escala", "resìduos e alavancagem"))
 ```
 
+#Questão 4
+<br />
+  Ao se fazer um diagnóstico binário, no qual Y assume apenas dois valores (positivo e negativo), queremos uma regra de predição que minimize os erros cometidos. Se tomarmos $\pi =1$ por exemplos, nosso Ŷ sempre será positivo. Isso irá maximizar o diagnóstico de verdadeiros positivos, mas também irá minimizar o diagnóstico dos quadros negativos, ou seja, também teremos muitos falsos positivos.<p>
+  Para a escolha do valor de $\pi$ é utilizada a curva ROC (do inglês Receiver Operating Characteristic - Característica de operação do receptor). Esta curva apresenta em seu eixo vertical $P(Ŷ=1|Y=1)$ - chamado sensibilidade -  e em seu eixo horizontal $1-P(Ŷ=0|Y=0)$ - chamado especificidade.
