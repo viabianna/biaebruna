@@ -73,8 +73,8 @@ qqline(residuos, col="red")
 ```
   ANALISAR!!!!!!!!!!!!!!!!!!!!
 
-Questao 2
-2a
+#Questao 2
+#2a
 ```{r}
 dados <- read.csv2("/home/be/viabianna/Downloads/dadosmalariaCEA15P14.csv")
 #Retirar os dados que contém N/A
@@ -89,6 +89,14 @@ cor(dados$pc,dados$peso)
 plot(dados$pc~dados$est, xlab="Perímetro Cefálico", ylab="Estatura", main= "Gráfico de Dispersão Perímetro Cefálico x Estatura")
 #Correlação Perímetro Cefálico x Estatura
 cor(dados$pc,dados$est)
+
+```
+<br />
+#2b
+<p>
+```{r}
+plot(dados$pc~dados$peso, xlab="Perímetro Cefálico", ylab="Peso", main= "Gráfico de Dispersão Perímetro Cefálico x Peso")
+abline(lm(dados$pc~dados$peso))
 
 ```
 
