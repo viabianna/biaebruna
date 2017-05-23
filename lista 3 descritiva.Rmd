@@ -126,12 +126,18 @@ $y= 34.31$
 
 2c
 ```{r}
-dados2 <- data.frame(dados$peso, dados$grupo)
-dados2 <- subset(dados2, !is.na(dados$peso))
+dados2 <- data.frame(dados$peso, dados$grupo, dados$pc)
 dadosgrupo <- vector(length=length(dados2$dados.grupo))
-dadosgrupo[which(dados2$dados.grupo==1)] <- 1
-dadosgrupo[which(dados2$dados.grupo==2)] <- 1
-dadosgrupo[which(dados2$dados.grupo==3)] <- 1
+dadosgrupo[which(dados2$dados.grupo!=0)] <- 'Infectada'
+dadosgrupo[which(dados2$dados.grupo==0)] <- "Não Infectada"
 dados2$dados.grupo <- dadosgrupo
+library(ggplot2)
+legenda <- as.factor(dados2$dados.grupo)
+ggplot(data = dados2, aes(x = dados2$dados.pc, y =dados2$dados.peso, colour = legenda)) +
+      geom_point()+
+      xlab("Perímetro Cefálico")+
+      ylab("Peso")+
+      labs(title="Gráfico de Dispersão Perímetro Cefálico x Peso")
+
 ```
 
