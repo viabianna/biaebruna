@@ -123,3 +123,15 @@ Assim sendo, o perímetro cefálico esperado, em centímetros, para um recém na
 $y= 0.482 * 50 + 10.21$
 <p>
 $y= 34.31$
+
+2c
+```{r}
+dados2 <- data.frame(dados$peso, dados$grupo)
+dados2 <- subset(dados2, !is.na(dados$peso))
+dadosgrupo <- vector(length=length(dados2$dados.grupo))
+dadosgrupo[which(dados2$dados.grupo==1)] <- 1
+dadosgrupo[which(dados2$dados.grupo==2)] <- 1
+dadosgrupo[which(dados2$dados.grupo==3)] <- 1
+dados2$dados.grupo <- dadosgrupo
+```
+
