@@ -2,11 +2,15 @@
 title: "lista 3 - descritiva"
 output: pdf_document
 ---
-<p>Lista 3 - Estatística Descritiva
-<p>Professora: Márcia D'Elia Branco
+<p>#Lista 3 - Estatística Descritiva
+<p>#Professora: Márcia D'Elia Branco
 <p>Nomes:
 <p>     Bruna Umino
-<p>     Breatriz Vianna
+<p>     Beatriz Vianna
+<br />
+#Exercício 1
+<p>
+#1a
 <p>
 ```{r}
 ano<-c(1942,1943,1944,1945,1946,1947,1948,1949,1950,1951,
@@ -75,12 +79,15 @@ qqline(residuos, col="red")
 
 #Questao 2
 #2a
-```{r}
+```{r, results="hide"} 
+library (magrittr)
 dados <- read.csv2("/home/be/viabianna/Downloads/dadosmalariaCEA15P14.csv")
 #Retirar os dados que contém N/A
-dados <- subset(dados, !is.na(pc))
-dados <- subset(dados, !is.na(peso))
-dados <- subset(dados, !is.na(est))
+dados %>% subset(!is.na(pc)) %>% subset(!is.na(peso)) %>% subset(!is.na(est))
+
+```
+
+```{r}
 #Gráfico de Dispersão Perímetro Cefálico x Peso
 plot(dados$pc~dados$peso, xlab="Perímetro Cefálico", ylab="Peso", main= "Gráfico de Dispersão Perímetro Cefálico x Peso")
 #Correlação Perímetro Cefálico x Peso
@@ -123,8 +130,9 @@ Assim sendo, o perímetro cefálico esperado, em centímetros, para um recém na
 $y= 0.482 * 50 + 10.21$
 <p>
 $y= 34.31$
-
-2c
+<br />
+#2c
+<p>
 ```{r}
 dados2 <- data.frame(dados$peso, dados$grupo)
 dados2 <- subset(dados2, !is.na(dados$peso))
