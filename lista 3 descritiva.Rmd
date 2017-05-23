@@ -95,8 +95,31 @@ cor(dados$pc,dados$est)
 #2b
 <p>
 ```{r}
-plot(dados$pc~dados$peso, xlab="Perímetro Cefálico", ylab="Peso", main= "Gráfico de Dispersão Perímetro Cefálico x Peso")
-abline(lm(dados$pc~dados$peso))
+equação <- (lm(dados$pc~dados$peso))
+equação
+```
+<p>A partir destes dados, sabemos que a reta de regressão para Perímetro Cefálico x Peso (que é a variável que apresenta maior correlação) será
+<p>
+$y = 0.002x + 26.061$
+<p>portanto, o perímetro cefálico, em centímetros, esperado para um bebê de 3000g é:
+<p>
+$y= 0.002*3000 + 26.061$
+<p>
+$y= 32.061$
+<p>
 
+```{r}
+equação <- (lm(dados$pc~dados$est))
+equação
 ```
 
+<p>
+Já a reta Perímetro Cefálico x Estatura (que apresenta menor correlação) será
+<p>
+$y=0.482x + 10.21$
+<p>
+Assim sendo, o perímetro cefálico esperado, em centímetros, para um recém nascido de 50cm será:
+<p>
+$y= 0.482 * 50 + 10.21$
+<p>
+$y= 34.31$
