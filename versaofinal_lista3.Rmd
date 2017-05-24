@@ -104,7 +104,7 @@ qqnorm(residuos,
 qqline(residuos, col="red")
 ```
   Os quantis dos resíduos não se aproximam muito para uma normal, mas podemos observar que os valores do meio estão mais próximos da linha $Y=X$ e as caudas se afastam consideravelmente.
-
+---
 #Questao 2
 
 #2a)
@@ -212,160 +212,18 @@ plot(fit1, caption = c("Resíduos x Ajustados", "QQ-Plot Normal",
 <p> O desvio padrão dos resíduos é 1.748
 <p> Devido aos dados estarem agrupados de forma binária, os gráficos com exceção do qqnorm saem alinhados verticalmente. Em relação ao gráfico de residuos podemos observar que a medida que aumenta o eixo x (a idade e o grupo), diminui a variabilidade dos dados, mostrando uma não homocedastidade. No entanto, analisando o gráfico qqnorm, o modelo se aproxima de uma normal, exceto nas caudas.
 
-
-#Questão 4
+---
+#Questão 3
 <br />
   Ao se fazer um diagnóstico binário, no qual Y assume apenas dois valores (positivo e negativo), queremos uma regra de predição que minimize os erros cometidos. Se tomarmos $\pi =1$ por exemplo, nosso Y sempre será positivo. Isso irá maximizar o diagnóstico de verdadeiros positivos, mas também irá minimizar o diagnóstico dos quadros negativos, ou seja, também teremos muitos falsos positivos (valores negativos que foram diagnosticados erroneamente como positivos).<p>
   Para a escolha do valor de pi é utilizada a curva ROC (do inglês Receiver Operating Characteristic - Característica de operação do receptor). Este gráfico apresenta em seu eixo vertical P(Y=1|Y=1) - chamado sensibilidade -  e em seu eixo horizontal 1-P(Y=0|Y=0) - chamado especificidade. A curva apresenta a associação entre as duas variáveis (sensibilidade e especificidade) para cada valor de pi entre 0 e 1. O que procuramos é o ponto da curva que apresenta um valor muito alto para a variável do eixo y e um muito baixo para a variável do eixo x.<p>
-  (COLOCAR IMAGEM DA TABELA QUE ESTÁ NA PASTA COM O NOME TABELA)
-# Getting Started with Markdown Syntax
-
-There are a lot of cheatsheets and reference guides for Markdown (e.g. [Adam Prichard](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet), [Assemble](http://assemble.io/docs/Cheatsheet-Markdown.html), [Rstudio](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf), [Rstudio again](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf), [Scott Boms](http://scottboms.com/downloads/documentation/markdown_cheatsheet.pdf), [Daring Fireball](https://daringfireball.net/projects/markdown/syntax), among, I'm sure, several others). I encourage the reader to look at those, though I will retread these references here with a minimal working example below.
-
-```markdown
-
-# Introduction
-
-**Lorem ipsum** dolor *sit amet*. 
-
-- Single asterisks italicize text *like this*. 
-- Double asterisks embolden text **like this**.
-
-Start a new paragraph with a blank line separating paragraphs.
-
-- This will start an unordered list environment, and this will be the first item.
-- This will be a second item.
-- A third item.
-    - Four spaces and a dash create a sublist and this item in it.
-- The fourth item.
-    
-1. This starts a numerical list.
-2. This is no. 2 in the numerical list.
-    
-# This Starts A New Section
-## This is a Subsection
-### This is a Subsubsection
-#### This starts a Paragraph Block.
-
-> This will create a block quote, if you want one.
-
-Want a table? This will create one.
-
-Table Header  | Second Header
-------------- | -------------
-Table Cell    | Cell 2
-Cell 3        | Cell 4 
-
-Note that the separators *do not* have to be aligned.
-
-Want an image? This will do it.
-
-![caption for my image](path/to/image.jpg)
-
-`fig_caption: yes` will provide a caption. Put that in the YAML metadata.
-
-Almost forgot about creating a footnote.[^1] This will do it again.[^2]
-
-[^1]: The first footnote
-[^2]: The second footnote
-
-Want to cite something? 
-
-- Find your biblatexkey in your bib file.
-- Put an @ before it, like @smith1984, or whatever it is.
-- @smith1984 creates an in-text citation (e.g. Smith (1984) says...)
-- [@smith1984] creates a parenthetical citation (Smith, 1984)
-
-That'll also automatically create a reference list at the end of the document.
-
-[In-text link to Google](http://google.com) as well.
-```
-
-That's honestly it. Markdown takes the chore of markup from your manuscript (hence: "Markdown").
-
-On that note, you could easily pass most LaTeX code through Markdown if you're writing a LaTeX document. However, you don't need to do this (unless you're using the math environment) and probably shouldn't anyway if you intend to share your document in HTML as well.
-
-# Using R Markdown with Knitr
-
-Perhaps the greatest intrigue of R Markdown comes with the [`knitr` package](http://yihui.name/knitr/) provided by @xie2013ddrk. In other words, the author can, if she chooses, do the analysis in the Markdown document itself and compile/execute it in R.
-
-Take, for example, this simple exercise using the `voteincome` data from the `Zelig` package. Suppose I want to explain the decision to vote using data from this package. I load in the data, clean the data, run the analyses, and present the results as a coefficient plot.
-
-Here's what this code looks like. All I did was create a code display, which starts with three *backticks* (i.e. those ticks next to the number 1 key on your keyboard) and ends with three backticks on another line. On the first line of backticks (i.e. to start the code display) enter `{r, eval=FALSE, tidy=TRUE}`. The `eval=FALSE` option just displays the R code (and does not run it), `tidy=TRUE` wraps long code so it does not run off the page.
-
-Within that code display, I enter my R code like this.
 
 
-```{r, eval=FALSE, tidy = TRUE}
-suppressMessages(library(Zelig))
-suppressMessages(library(arm))
-suppressMessages(library(coefplot))
+Resultado do teste sob investigação  | positivos | negativos
+------------- | -------------|------
+positivo    | verdadeiros positivos | falsos positivos
+negativo        | falsos negativos | verdadeiros negativos
+total | total positivos | total negativos
+------|------|------|
+desempenho| sensibilidade | especificidade
 
-data(voteincome)
-
-voteincome$z.age <- arm::rescale(voteincome$age)
-voteincome$z.education <- arm::rescale(voteincome$education)
-voteincome$z.income <- arm::rescale(voteincome$income)
-
-M1 <- glm(vote ~ z.age + female + z.education + z.income,
-            data=voteincome, family=binomial)
-
-coefplot(M1)
-```
-
-The implications for workflow are faily substantial. Authors can rather quickly display the code they used to run the analyses in the document itself (likely in the appendix). As such, there's little guesswork for reviewers and editors in understanding what the author did in the analyses reported in the manuscript.
-
-It doesn't end there. In fact, here's what happens when `eval=FALSE` is omitted or changed to `eval=TRUE`. Now, the code runs within R. Observe.
-
-```{r, eval=TRUE, tidy = TRUE, cache=FALSE, fig.cap="A Coefficient Plot"}
-suppressMessages(library(Zelig))
-suppressMessages(library(arm))
-
-
-data(voteincome)
-
-voteincome$z.age <- arm::rescale(voteincome$age)
-voteincome$z.education <- arm::rescale(voteincome$education)
-voteincome$z.income <- arm::rescale(voteincome$income)
-
-M1 <- glm(vote ~ z.age + female + z.education + z.income,
-            data=voteincome, family=binomial)
-
-arm::coefplot(M1)
-```
-
-To get `knitr` to present the results of a table, add `results="asis"` to the brackets to start the R code chunk. The ensuing output will look like this (though the table may come on the next page).
-
-```{r, eval=TRUE, tidy = TRUE, size="small", cache=FALSE, results="asis"}
-suppressMessages(library(Zelig))
-suppressMessages(library(stargazer))
-suppressMessages(library(arm))
-
-data(voteincome)
-
-voteincome$z.age <- arm::rescale(voteincome$age)
-voteincome$z.education <- arm::rescale(voteincome$education)
-voteincome$z.income <- arm::rescale(voteincome$income)
-
-
-M1 <- glm(vote ~ z.age + female + z.education + z.income,
-            data=voteincome, family=binomial)
-
-stargazer(M1, title="A Handsome Table", header=FALSE)
-```
-
-Adding `echo="FALSE"` inside the brackets to start the R chunk will omit the presentation of the R commands. It will just present the table. This provides substantial opportunity for authors in doing their analyses. Now, the analysis and presentation in the form of a polished manuscript can be effectively simultaneous.[^4]
-
-[^4]: I'm not sure if I'm ready to commit to this myself since my workflow is still largely derived from [Rob J. Hyndman's example](http://robjhyndman.com/hyndsight/workflow-in-r/). However, *knitr* has endless potential, especially when analyses can stored in cache, saved as chunks, or loaded in the preamble of a document to reference later in the manuscript.
-
-
-
-
-<!--
-# References
-\setlength{\parindent}{-0.2in}
-\setlength{\leftskip}{0.2in}
-\setlength{\parskip}{8pt}
-\vspace*{-0.2in}
-\noindent
--->
