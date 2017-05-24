@@ -70,12 +70,9 @@ par(mar=c(4,4,4,4))
 plot (colheita~ano, type="o", col="darkorchid3", ylab = "", pch=16, main = "Gráfico colheita x ano x preço")
 mtext("Colheita", side = 2, line = 2.5, col="darkorchid3")
 par(new=TRUE)
-```
-
-```{r}
 #grafico de dispersão ano x preço
 plot(preco~ano, axes=FALSE, type='o', col='deeppink2', ann=FALSE, pch=16)
-mtext("Pre?o", side = 4, line = 2.5, col="deeppink2")
+mtext("Preço", side = 4, line = 2.5, col="deeppink2")
 axis(4)
 ```
   COMENTAR!!!!!!!!!!!!!!!!!!!!
