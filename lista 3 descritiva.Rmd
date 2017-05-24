@@ -27,9 +27,9 @@ tabela <- data.frame(ano, colheita, preco)
 <p>
 ```{r}
 #Grafico de dispersao
-plot( colheita ~ preco, 
-      xlab = "Preço (escudos/litro)",
-      ylab = "Colheita (em milhares de hectolitros)",
+plot( preco ~ colheita, 
+      xlab = "Colheita (em milhares de hectolitros)",
+      ylab = "Preço (escudos/litro)",
       main = "Gráfico de dispersão")
 ```
 
@@ -42,15 +42,15 @@ cor(preco, colheita)
 #1b)
 <p>
 ```{r}
-plot( colheita ~ preco, 
-      xlab = "Preço (escudos/litro)",
-      ylab = "Colheita (em milhares de hectolitros)",
+plot( preco ~ colheita, 
+      xlab = "Colheita (em milhares de hectolitros)",
+      ylab = "Preço (escudos/litro)",
       main = "Gráfico de dispersão com reta de regressão")
-abline(lm (colheita ~ preco))
-lm (colheita ~ preco)
+abline(lm (preco ~ colheita))
+lm (preco ~ colheita)
 
 ```
-<p>  Dado que o resultado do coeficiente angular foi igual a -3219, podemos observar que consiste em um valor negativo, ou seja, o preço e a colheita são inversamente proporcionais.
+<p>  Dado que o resultado do coeficiente angular foi igual a -0.0001209, podemos observar que consiste em um valor negativo, ou seja, o preço e a colheita são inversamente proporcionais.
  
 #1c)
 <p>
