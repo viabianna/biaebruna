@@ -118,12 +118,12 @@ dados %>% subset(!is.na(pc)) %>% subset(!is.na(peso)) %>% subset(!is.na(est))
 <p>
 ```{r}
 #Gráfico de Dispersão Perímetro Cefálico x Peso
-plot(dados$pc~dados$peso, xlab="Perímetro Cefálico", ylab="Peso",
+plot(dados$peso~dados$pc, xlab="Peso", ylab="Perímetro Cefálico",
      main= "Gráfico de Dispersão Perímetro Cefálico x Peso")
 #Correlação Perímetro Cefálico x Peso
-cor(dados$pc,dados$peso)
+cor(dados$peso,dados$pc)
 #Gráfico de Dispersão Perímetro Cefálico x Estatura
-plot(dados$pc~dados$est, xlab="Perímetro Cefálico", ylab="Estatura",
+plot(dados$est~dados$peso, xlab="Estatura", ylab="Perímetro Cefálico",
      main= "Gráfico de Dispersão Perímetro Cefálico x Estatura")
 #Correlação Perímetro Cefálico x Estatura
 cor(dados$pc,dados$est)
@@ -133,34 +133,34 @@ cor(dados$pc,dados$est)
 #2b)
 <p>
 ```{r}
-equação <- (lm(dados$pc~dados$peso))
+equação <- (lm(dados$peso~dados$pc))
 equação
 ```
 <p>A partir destes dados, sabemos que a reta de regressão para Perímetro Cefálico x Peso (que é a variável que apresenta maior correlação) será
 <p>
-$y = 0.002x + 26.061$
+$y = 202.800x - 3683.4$
 <p>portanto, o perímetro cefálico, em centímetros, esperado para um bebê de 3000g é:
 <p>
-$y= 0.002*3000 + 26.061$
+$y= 202.800*3000 - 3683.4$
 <p>
-$y= 32.061$
+$y= 604716.600$
 <p>
 
 ```{r}
-equação <- (lm(dados$pc~dados$est))
+equação <- (lm(dados$est~dados$pc))
 equação
 ```
 
 <p>
 Já a reta Perímetro Cefálico x Estatura (que apresenta menor correlação) será
 <p>
-$y=0.482x + 10.21$
+$y=0.7718x + 22.820$
 <p>
 Assim sendo, o perímetro cefálico esperado, em centímetros, para um recém nascido de 50cm será:
 <p>
-$y= 0.482 * 50 + 10.21$
+$y= 0.7718 * 50 + 22.820$
 <p>
-$y= 34.31$
+$y= 61.410$
 <br />
 #2c)
 <p>
@@ -178,10 +178,10 @@ dados2$dados.grupo <- dadosgrupo
 library(ggplot2)
 legenda <- as.factor(dados2$dados.grupo)
 ggplot(data = dados2, 
-      aes(x = dados2$dados.pc, y =dados2$dados.peso, colour = legenda)) +
+      aes(x = dados2$dados.peso, y =dados2$dados.pc, colour = legenda)) +
       geom_point()+
-      xlab("Perímetro Cefálico")+
-      ylab("Peso")+
+      xlab("Peso")+
+      ylab("Perímetro Cefálico")+
       labs(title="Gráfico de Dispersão Perímetro Cefálico x Peso")
 
 ```
