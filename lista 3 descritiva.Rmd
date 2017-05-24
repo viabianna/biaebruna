@@ -28,9 +28,9 @@ tabela <- data.frame(ano, colheita, preco)
 ```{r}
 #Grafico de dispersao
 plot( colheita ~ preco, 
-      xlab = "Preco (escudos/litro)",
+      xlab = "Preço (escudos/litro)",
       ylab = "Colheita (em milhares de hectolitros)",
-      main = "Grafico de dispersao")
+      main = "Gráfico de dispersão")
 ```
 
 ```{r}
@@ -43,7 +43,7 @@ cor(preco, colheita)
 <p>
 ```{r}
 plot( colheita ~ preco, 
-      xlab = "Pre?o (escudos/litro)",
+      xlab = "Preço (escudos/litro)",
       ylab = "Colheita (em milhares de hectolitros)",
       main = "Gráfico de dispersão com reta de regressão")
 abline(lm (colheita ~ preco))
@@ -75,15 +75,14 @@ plot(preco~ano, axes=FALSE, type='o', col='deeppink2', ann=FALSE, pch=16)
 mtext("Preço", side = 4, line = 2.5, col="deeppink2")
 axis(4)
 ```
-  COMENTAR!!!!!!!!!!!!!!!!!!!!
   Através dos gráficos podemos observar que ocoreu uma considerável colheita no ano de 1943, que resultou no pior preço e no ano de 1952 ocorreu a menor colheita deste intervalo de tempo. O resto dos valores coletados está na faixa de 5000 a 10900 milhares de hectolitros. Em relação ao preço, há picos nos anos de 1946, 1961, 1952 e 1958, que são os anos nos quais ocorreram as piores colheitas, e nos anos de 1944, 1943 e 1954, quando foram relatados os menores preços.
   
 #1e)
 <p>
 ```{r}
 qqnorm(residuos, 
-       main = "Gr?fico de probabilidades normais", 
-       xlab = "Quantis te?ricos", 
+       main = "Gráfico de probabilidades normais", 
+       xlab = "Quantis teóricos", 
        ylab = "Quantis amostrais")
 qqline(residuos, col="red")
 ```
