@@ -5,15 +5,14 @@ output:
     keep_tex: true
     fig_caption: true
     latex_engine: pdflatex
-    template: ~/Desktop/svm-rmarkdown-article-example_files/svm-latex-ms.tex
-title: "Estatistica Descritiva - lista 3"
+    template: svm-latex-ms.tex
+title: "Estatística Descritiva - lista 3"
 author:
-- name: Bruna Umino, Beatriz Vianna
+- name: "Bruna Umino, Beatriz Vianna"
   affiliation: IME - USP
-abstract: "professora Marcia D'Elia Branco"
+abstract: "Professora Marcia D'Elia Branco"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 geometry: margin=1in
-fontfamily: mathpazo
 fontsize: 11pt
 # spacing: double
 bibliography: ~/Dropbox/master.bib
@@ -120,7 +119,7 @@ qqline(residuos, col="red")
 #2a)
 ```{r, results="hide"} 
 library (magrittr)
-dados <- read.csv2("/home/be/viabianna/Downloads/dadosmalariaCEA15P14.csv")
+dados <- read.csv2("dadosmalariaCEA15P14.csv")
 #Retirar os dados que contém N/A
 dados <- dados %>% subset(!is.na(pc)) %>% subset(!is.na(peso)) %>% subset(!is.na(est))
 ```
@@ -258,66 +257,63 @@ A curva ROC também é útil na hora de analisar a acurácia de um teste. Um tes
 
 ---
 
-#Questão 4
-<p>
+#Questão 4 teste
+
 MQ $\rightarrow$ mínimos quadrados
-<p>
-$y_{i}= \alpha + \beta x_{i} + \varepsilon_{i} \rightarrow \varepsilon_{i} = y_{i} - \alpha - \beta x_{i}$
-<p>
+
+$$y_{i}= \alpha + \beta x_{i} + \varepsilon_{i} \Rightarrow \varepsilon_{i} = y_{i} - \alpha - \beta x_{i}$$
+
 Como $x$ tem valores 0 ou 1:
 <p>
-$x = 0 \rightarrow \varepsilon_{i} = y_{i}- \alpha$<p>
-$x= 1 \rightarrow \varepsilon_{i} = y_{i} - \alpha - \beta$
-<p>
-$\varepsilon_{i} = y_{i} - \alpha - \beta x_{i} \rightarrow \sum_{i=i}^n ( \varepsilon_{i})^2$<p>
-$\varepsilon_{i} = \sum_{i=1}^n ( y_{i} - \alpha - \beta x_{i} )^2$<p>
-$\varepsilon_{i} = \sum_{i=1}^n (y_{i}^2 + \alpha^2 + \beta^2 x_{i}^2 - 2 \alpha y_{i} - 2 \beta x_{i} y_{i} + 2 \alpha \beta x_{i})$
-<p>
+$$x = 0 \rightarrow \varepsilon_{i} = y_{i}- \alpha$$
+$$x= 1 \rightarrow \varepsilon_{i} = y_{i} - \alpha - \beta$$
+$$\varepsilon_{i} = y_{i} - \alpha - \beta x_{i} \Rightarrow \sum_{i=i}^n ( \varepsilon_{i})^2$$
+$$\varepsilon_{i} = \sum_{i=1}^n ( y_{i} - \alpha - \beta x_{i} )^2$$
+$$\varepsilon_{i} = \sum_{i=1}^n (y_{i}^2 + \alpha^2 + \beta^2 x_{i}^2 - 2 \alpha y_{i} - 2 \beta x_{i} y_{i} + 2 \alpha \beta x_{i})$$
+
 
 Fazendo os mínimos quadrados:<p>
-$\frac{d}{d\alpha} \sum_{i=1}^n ( y_{i}^2 + \alpha^2 + \beta^2 x_{i}^2 - 2 \alpha y_{i} - 2 \beta x_{i} y_{i} + 2 \alpha \beta x_{i})$<p>
-$= \sum_{i=1}^n 2 \alpha - 2 y_{i} + 2 \beta x_{i} = 2 [n \alpha - \sum_{i=1}^n y_{i} + \beta \sum_{i=1}^n x_{i}]$
+$$\frac{d}{d\alpha} \sum_{i=1}^n ( y_{i}^2 + \alpha^2 + \beta^2 x_{i}^2 - 2 \alpha y_{i} - 2 \beta x_{i} y_{i} + 2 \alpha \beta x_{i})$$
+$$= \sum_{i=1}^n 2 \alpha - 2 y_{i} + 2 \beta x_{i} = 2 [n \alpha - \sum_{i=1}^n y_{i} + \beta \sum_{i=1}^n x_{i}]$$
 <p>
 Para provar que é o mínimo:
 <p>
-$\frac{d}{d \alpha} \sum_{i=1}^n 2 \alpha - 2 y_{i} + 2 \beta x_{i} = 2 > 0$
-<p>
+$$\frac{d}{d \alpha} \sum_{i=1}^n 2 \alpha - 2 y_{i} + 2 \beta x_{i} = 2 > 0$$
 ------<p>
-$\frac{d}{d \beta} \sum_{i=1}^n ( y_{i}^2 + \alpha^2 + \beta^2 x_{i}^2 - 2 \alpha y_{i} - 2 \beta x_{i} y_{i} + 2 \alpha \beta x_{i}) = \sum_{i=1}^n 2 \beta x_{i}^2 - 2 x_{i} y_{i} +2 \alpha x_{i}$
-<p>
-$= 2 [\beta \sum_{i=1}^n x_{i}^2 - \sum_{i=1}^n x_{i} y_ {i} + \alpha \sum_{i=1}^n x_{i}]$
+$$\frac{d}{d \beta} \sum_{i=1}^n ( y_{i}^2 + \alpha^2 + \beta^2 x_{i}^2 - 2 \alpha y_{i} - 2 \beta x_{i} y_{i} + 2 \alpha \beta x_{i}) = \sum_{i=1}^n 2 \beta x_{i}^2 - 2 x_{i} y_{i} +2 \alpha x_{i}$$
+$$= 2 [\beta \sum_{i=1}^n x_{i}^2 - \sum_{i=1}^n x_{i} y_ {i} + \alpha \sum_{i=1}^n x_{i}]$$
 <p>
 Para provar que é o mínimo:
 <p>
-$\frac{d}{d \beta} \sum_{i=1}^n 2 \beta x_{i}^2 - 2 x_{i} y_{i} +2 \alpha= 2 \sum_{i=1}^n x_{i}^2 >0$ 
+$$\frac{d}{d \beta} \sum_{i=1}^n 2 \beta x_{i}^2 - 2 x_{i} y_{i} +2 \alpha= 2 \sum_{i=1}^n x_{i}^2 >0$$ 
 (é sempre positiva dado que $x_{i}$ está ao quadrado)<p>
 ------<p>
 Se:<p>
 
-$n \alpha - \sum_{i=1}^n y_{i} + \beta \sum_{i=1}^n x_{i} = 0$<P>
-$\beta \sum_{i=1}^n x_{i}^2 - \sum_{i=1}^n x_{i} y_{i} + \alpha \sum_{i=1}^n = 0$<p>
+$$n \alpha - \sum_{i=1}^n y_{i} + \beta \sum_{i=1}^n x_{i} = 0$$
+$$\beta \sum_{i=1}^n x_{i}^2 - \sum_{i=1}^n x_{i} y_{i} + \alpha \sum_{i=1}^n = 0$$
 então<p>
-$\alpha = \frac{1}{n} \sum_{i=1}^n y_{i} - \frac{ \beta}{n} \sum_{i=1}^n x_{i}$<p>
-$\beta = \frac{ \sum_{i=1}^n x_{i} y_{i} - \alpha \sum_{i=1}^n x_{i}}{\sum_{i=1}^n x_{i}^2}$<p>
+$$\alpha = \frac{1}{n} \sum_{i=1}^n y_{i} - \frac{ \beta}{n} \sum_{i=1}^n x_{i}$$
+$$\beta = \frac{ \sum_{i=1}^n x_{i} y_{i} - \alpha \sum_{i=1}^n x_{i}}{\sum_{i=1}^n x_{i}^2}$$
 Substituindo $\alpha$ em $\beta$ temos:<p>
-$\beta = \frac{ \sum_{i=1}^n x_{i} y_{i} - \frac{1}{n} \sum_{i=1}^n y_{i} \sum_{i=1}^n x_{i} + \frac{\beta}{n} \sum_{i=1}{n}x_{i} \sum_{i=1}^n} {\sum_{i=1}^n x_{i}^2}$<p>
-$\rightarrow \beta = \frac{\sum_{i=1}^n x_{i} Y_{i} - \frac{1}{n} \sum_{i=1}^n y_{i} \sum_{i=1}^n x_{i}}{\sum_{i=1}^n x_{i}^2 - \frac{1}{n} \sum_{i=1}^n x_{i} \sum_{i=1}^n x_{i}}$<p>
+$$\beta = \frac{ \sum_{i=1}^n x_{i} y_{i} - \frac{1}{n} \sum_{i=1}^n y_{i} \sum_{i=1}^n x_{i} + \frac{\beta}{n} \sum_{i=1}{n}x_{i} \sum_{i=1}^n} {\sum_{i=1}^n x_{i}^2}$$
+$$\rightarrow \beta = \frac{\sum_{i=1}^n x_{i} Y_{i} - \frac{1}{n} \sum_{i=1}^n y_{i} \sum_{i=1}^n x_{i}}{\sum_{i=1}^n x_{i}^2 - \frac{1}{n} \sum_{i=1}^n x_{i} \sum_{i=1}^n x_{i}}$$
 ------<p>
-$\sum_{i=1}^n y_{i}= \sum_{j=1}^n y_{1j} + \sum_{j=1}^n y_{2j}$<p>
+$$\sum_{i=1}^n y_{i}= \sum_{j=1}^n y_{1j} + \sum_{j=1}^n y_{2j}$$
 sendo $y_{1}$ os valores de $y$ quando $x=0$ e $y_{2}$ os valores de $y$ correspondentes a $x=1$.<p>
-Sabemos que $\sum_{i=1}^n x_{i} y_{i} = \sum_{j=1}^ny_{2j}$ e que $\sum_{i=1}^n x_{i} = n_{2} = \sum_{i=1}^n x_{i}^2$<p>
-$\beta = \frac{\sum_{i=1}^n y_{2j} -  \frac{1}{n} \sum_{i=1}^n y_{i}(n_{2})}{n_{2}- \frac{(n_{2})^2}{n}}$<p>
-$\beta = \frac{n \sum_{i=1}{n}y_{2j} - \sum_{i=1}^n y_{i}(n_{2})(\frac{1}{n_{2}})}{n(n_{2})-(n_{2})^2}$<p>
-$\beta = \frac{n \bar y_{2} - \sum_{i=1}^n y_{i}}{n-n_{2}}$<p>
-$\beta = \frac{n \bar y_{2} - \sum_{i=1}^n y_{i}}{n_{1}}$<p>
-$\beta = \frac{n \bar y_{2}}{n_{1}} - \frac{ \sum_{i=1}^n y_{1j}}{n_{1}} - \frac{\sum_{i=1}^n y_{2j}}{n_{1}}$<p>
-$\beta = \frac{n}{n_{1}}\bar y_{2} - \bar y_{1} - \frac{n_{2} \bar y_{2}}{n_{1}}$<p>
-$\beta = \frac{(n_{1}+n_{2})\bar y_{2} - n_{1}\bar y_{1} - n_{2} \bar y_{2}}{n_{1}}$<p>
-$\rightarrow \beta = \bar y_{2} - \bar y_{1}$<p>
+Sabemos que $\sum_{i=1}^n x_{i} y_{i} = \sum_{j=1}^ny_{2j}$ e que $\sum_{i=1}^n x_{i} = n_{2} = \sum_{i=1}^n x_{i}^2$
+$$\beta = \frac{\sum_{i=1}^n y_{2j} -  \frac{1}{n} \sum_{i=1}^n y_{i}(n_{2})}{n_{2}- \frac{(n_{2})^2}{n}}$$
+$$\beta = \frac{n \sum_{i=1}{n}y_{2j} - \sum_{i=1}^n y_{i}(n_{2})(\frac{1}{n_{2}})}{n(n_{2})-(n_{2})^2}$$
+$$\beta = \frac{n \bar y_{2} - \sum_{i=1}^n y_{i}}{n-n_{2}}$$
+$$\beta = \frac{n \bar y_{2} - \sum_{i=1}^n y_{i}}{n_{1}}$$
+$$\beta = \frac{n \bar y_{2}}{n_{1}} - \frac{ \sum_{i=1}^n y_{1j}}{n_{1}} - \frac{\sum_{i=1}^n y_{2j}}{n_{1}}$$
+$$\beta = \frac{n}{n_{1}}\bar y_{2} - \bar y_{1} - \frac{n_{2} \bar y_{2}}{n_{1}}$$
+$$\beta = \frac{(n_{1}+n_{2})\bar y_{2} - n_{1}\bar y_{1} - n_{2} \bar y_{2}}{n_{1}}$$
+$$\Rightarrow \beta = \bar y_{2} - \bar y_{1}$$
 ------<p>
 Substituindo $\beta = \bar y_{2} - \bar y_{1}$ em $\alpha$<p>
-$\alpha= \frac{1}{n} \sum_{i=1}^n y_{1} - \frac{ \bar y_{2} - \bar y_{1}}{n} \sum_{i=1}^n x_{i}$<p>
-$\alpha= \frac {\sum_{i=1}^n y_{1} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n}$<p>
-$\alpha=\frac {\sum_{j=1}^n y_{1j} + \sum_{j=1}^n y_{2j} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n}=\frac {n_{1} \frac{\sum_{j=1}^n y_{1j}}{n_{1}} + n_{2} \frac{\sum_{j=1}^n y_{2j}}{n_{2}} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n}$<p>
-$\alpha= \frac{n_{1} \bar y_{1} + (n_{2} \bar y_{2} - n_{2} \bar y_{2}) + n_{2} \bar y_{1}}{n}= \frac{(n_{1}+n_{2}) \bar y_{1}}{n}$<p>
-$\rightarrow \alpha = \bar y_{1}$
+$$\alpha= \frac{1}{n} \sum_{i=1}^n y_{1} - \frac{ \bar y_{2} - \bar y_{1}}{n} \sum_{i=1}^n x_{i}$$
+$$\alpha= \frac {\sum_{i=1}^n y_{1} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n}$$
+$$\alpha=\frac {\sum_{j=1}^n y_{1j} + \sum_{j=1}^n y_{2j} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n}=\frac {n_{1} \frac{\sum_{j=1}^n y_{1j}}{n_{1}} + n_{2} \frac{\sum_{j=1}^n y_{2j}}{n_{2}} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n}$$
+$$\alpha= \frac{n_{1} \bar y_{1} + (n_{2} \bar y_{2} - n_{2} \bar y_{2}) + n_{2} \bar y_{1}}{n}= \frac{(n_{1}+n_{2}) \bar y_{1}}{n}$$
+$$\Rightarrow \alpha = \bar y_{1}$$
