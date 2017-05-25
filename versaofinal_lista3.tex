@@ -8,6 +8,7 @@
   \usepackage[utf8]{inputenc}
 
 
+%\usepackage{indentfirst}
 
 \usepackage{abstract}
 \renewcommand{\abstractname}{}    % clear the title
@@ -91,7 +92,7 @@
 \let\Oldincludegraphics\includegraphics
 \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
 
-\title{Estatistica Descritiva - lista 3  }
+\title{Estatística Descritiva - lista 3  }
 
 
 
@@ -137,7 +138,7 @@
             bookmarks=true,
             pdfauthor={Bruna Umino, Beatriz Vianna (IME - USP)},
              pdfkeywords = {},  
-            pdftitle={Estatistica Descritiva - lista 3},
+            pdftitle={Estatística Descritiva - lista 3},
             colorlinks=true,
             citecolor=blue,
             urlcolor=blue,
@@ -181,7 +182,7 @@
 
     \vskip 8.5pt % \small 
 
-\noindent professora Marcia D'Elia Branco
+\noindent Professora Marcia D'Elia Branco
 
 
     \hbox{\vrule height .2pt width 39.14pc}
@@ -193,6 +194,12 @@
 \vskip 6.5pt
 
 \noindent  \section{Questão 1}\label{questao-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{las=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -222,7 +229,7 @@
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-2-1.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-3-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -254,7 +261,7 @@ Devido a este valor, a correlação está mais elevada.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-3-1.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-4-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -310,7 +317,7 @@ na questão anterior.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-4-1.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-5-1.pdf}
 
 Observando o gráfico, podemos ver que aumentando o valor da colheita,
 não aumenta a variabilidade dos dados, então o gráfico é homocedástico.
@@ -334,7 +341,7 @@ não aumenta a variabilidade dos dados, então o gráfico é homocedástico.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-5-1.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-6-1.pdf}
 
 Através dos gráficos podemos observar que ocoreu uma considerável
 colheita no ano de 1943, que resultou no pior preço e no ano de 1952
@@ -363,7 +370,7 @@ preço apresenta pico inverso no mesmo ano.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-6-1.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-7-1.pdf}
 
 Os quantis dos resíduos não se aproximam muito para uma normal, mas
 podemos observar que os valores do meio estão mais próximos da linha
@@ -378,7 +385,7 @@ podemos observar que os valores do meio estão mais próximos da linha
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library} \NormalTok{(magrittr)}
-\NormalTok{dados <-}\StringTok{ }\KeywordTok{read.csv2}\NormalTok{(}\StringTok{"/home/be/viabianna/Downloads/dadosmalariaCEA15P14.csv"}\NormalTok{)}
+\NormalTok{dados <-}\StringTok{ }\KeywordTok{read.csv2}\NormalTok{(}\StringTok{"dadosmalariaCEA15P14.csv"}\NormalTok{)}
 \CommentTok{#Retirar os dados que contém N/A}
 \NormalTok{dados <-}\StringTok{ }\NormalTok{dados %>%}\StringTok{ }\KeywordTok{subset}\NormalTok{(!}\KeywordTok{is.na}\NormalTok{(pc)) %>%}\StringTok{ }\KeywordTok{subset}\NormalTok{(!}\KeywordTok{is.na}\NormalTok{(peso)) %>%}\StringTok{ }\KeywordTok{subset}\NormalTok{(!}\KeywordTok{is.na}\NormalTok{(est))}
 \end{Highlighting}
@@ -394,7 +401,7 @@ podemos observar que os valores do meio estão mais próximos da linha
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-8-1.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-9-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -415,7 +422,7 @@ podemos observar que os valores do meio estão mais próximos da linha
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-10-1.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-11-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -513,7 +520,7 @@ recém nascido de 50cm e 3kg será:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-15-1.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-16-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -571,7 +578,7 @@ recém nascido de 50cm e 3kg será:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-17-1.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-18-1.pdf}
 
 O modelo está ajustando o perímetro cefálico em relação ao grupo da
 gestante (0=não infectada e 1=infectada) e a idade da gestante (0= até
@@ -645,107 +652,80 @@ acurado é o teste (com altas sensibilidade e especificidade).
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
-\section{Questão 4}\label{questao-4}
+\section{Questão 4 teste}\label{questao-4-teste}
 
 MQ \(\rightarrow\) mínimos quadrados
 
-\(y_{i}= \alpha + \beta x_{i} + \varepsilon_{i} \rightarrow \varepsilon_{i} = y_{i} - \alpha - \beta x_{i}\)
+\[y_{i}= \alpha + \beta x_{i} + \varepsilon_{i} \Rightarrow \varepsilon_{i} = y_{i} - \alpha - \beta x_{i}\]
 
 Como \(x\) tem valores 0 ou 1:
 
-\(x = 0 \rightarrow \varepsilon_{i} = y_{i}- \alpha\)
-
-\(x= 1 \rightarrow \varepsilon_{i} = y_{i} - \alpha - \beta\)
-
-\(\varepsilon_{i} = y_{i} - \alpha - \beta x_{i} \rightarrow \sum_{i=i}^n ( \varepsilon_{i})^2\)
-
-\(\varepsilon_{i} = \sum_{i=1}^n ( y_{i} - \alpha - \beta x_{i} )^2\)
-
-\(\varepsilon_{i} = \sum_{i=1}^n (y_{i}^2 + \alpha^2 + \beta^2 x_{i}^2 - 2 \alpha y_{i} - 2 \beta x_{i} y_{i} + 2 \alpha \beta x_{i})\)
+\[x = 0 \rightarrow \varepsilon_{i} = y_{i}- \alpha\]
+\[x= 1 \rightarrow \varepsilon_{i} = y_{i} - \alpha - \beta\]
+\[\varepsilon_{i} = y_{i} - \alpha - \beta x_{i} \Rightarrow \sum_{i=i}^n ( \varepsilon_{i})^2\]
+\[\varepsilon_{i} = \sum_{i=1}^n ( y_{i} - \alpha - \beta x_{i} )^2\]
+\[\varepsilon_{i} = \sum_{i=1}^n (y_{i}^2 + \alpha^2 + \beta^2 x_{i}^2 - 2 \alpha y_{i} - 2 \beta x_{i} y_{i} + 2 \alpha \beta x_{i})\]
 
 Fazendo os mínimos quadrados:
 
-\(\frac{d}{d\alpha} \sum_{i=1}^n ( y_{i}^2 + \alpha^2 + \beta^2 x_{i}^2 - 2 \alpha y_{i} - 2 \beta x_{i} y_{i} + 2 \alpha \beta x_{i})\)
-
-\(= \sum_{i=1}^n 2 \alpha - 2 y_{i} + 2 \beta x_{i} = 2 [n \alpha - \sum_{i=1}^n y_{i} + \beta \sum_{i=1}^n x_{i}]\)
+\[\frac{d}{d\alpha} \sum_{i=1}^n ( y_{i}^2 + \alpha^2 + \beta^2 x_{i}^2 - 2 \alpha y_{i} - 2 \beta x_{i} y_{i} + 2 \alpha \beta x_{i})\]
+\[= \sum_{i=1}^n 2 \alpha - 2 y_{i} + 2 \beta x_{i} = 2 [n \alpha - \sum_{i=1}^n y_{i} + \beta \sum_{i=1}^n x_{i}]\]
 
 Para provar que é o mínimo:
 
-\(\frac{d}{d \alpha} \sum_{i=1}^n 2 \alpha - 2 y_{i} + 2 \beta x_{i} = 2 > 0\)
-
+\[\frac{d}{d \alpha} \sum_{i=1}^n 2 \alpha - 2 y_{i} + 2 \beta x_{i} = 2 > 0\]
 ------
 
-\(\frac{d}{d \beta} \sum_{i=1}^n ( y_{i}^2 + \alpha^2 + \beta^2 x_{i}^2 - 2 \alpha y_{i} - 2 \beta x_{i} y_{i} + 2 \alpha \beta x_{i}) = \sum_{i=1}^n 2 \beta x_{i}^2 - 2 x_{i} y_{i} +2 \alpha x_{i}\)
-
-\(= 2 [\beta \sum_{i=1}^n x_{i}^2 - \sum_{i=1}^n x_{i} y_ {i} + \alpha \sum_{i=1}^n x_{i}]\)
+\[\frac{d}{d \beta} \sum_{i=1}^n ( y_{i}^2 + \alpha^2 + \beta^2 x_{i}^2 - 2 \alpha y_{i} - 2 \beta x_{i} y_{i} + 2 \alpha \beta x_{i}) = \sum_{i=1}^n 2 \beta x_{i}^2 - 2 x_{i} y_{i} +2 \alpha x_{i}\]
+\[= 2 [\beta \sum_{i=1}^n x_{i}^2 - \sum_{i=1}^n x_{i} y_ {i} + \alpha \sum_{i=1}^n x_{i}]\]
 
 Para provar que é o mínimo:
 
-\(\frac{d}{d \beta} \sum_{i=1}^n 2 \beta x_{i}^2 - 2 x_{i} y_{i} +2 \alpha= 2 \sum_{i=1}^n x_{i}^2 >0\)
+\[\frac{d}{d \beta} \sum_{i=1}^n 2 \beta x_{i}^2 - 2 x_{i} y_{i} +2 \alpha= 2 \sum_{i=1}^n x_{i}^2 >0\]
 (é sempre positiva dado que \(x_{i}\) está ao quadrado)
 
 ------
 
 Se:
 
-\(n \alpha - \sum_{i=1}^n y_{i} + \beta \sum_{i=1}^n x_{i} = 0\)
-
-\(\beta \sum_{i=1}^n x_{i}^2 - \sum_{i=1}^n x_{i} y_{i} + \alpha \sum_{i=1}^n = 0\)
-
+\[n \alpha - \sum_{i=1}^n y_{i} + \beta \sum_{i=1}^n x_{i} = 0\]
+\[\beta \sum_{i=1}^n x_{i}^2 - \sum_{i=1}^n x_{i} y_{i} + \alpha \sum_{i=1}^n = 0\]
 então
 
-\(\alpha = \frac{1}{n} \sum_{i=1}^n y_{i} - \frac{ \beta}{n} \sum_{i=1}^n x_{i}\)
-
-\(\beta = \frac{ \sum_{i=1}^n x_{i} y_{i} - \alpha \sum_{i=1}^n x_{i}}{\sum_{i=1}^n x_{i}^2}\)
-
+\[\alpha = \frac{1}{n} \sum_{i=1}^n y_{i} - \frac{ \beta}{n} \sum_{i=1}^n x_{i}\]
+\[\beta = \frac{ \sum_{i=1}^n x_{i} y_{i} - \alpha \sum_{i=1}^n x_{i}}{\sum_{i=1}^n x_{i}^2}\]
 Substituindo \(\alpha\) em \(\beta\) temos:
 
-\(\beta = \frac{ \sum_{i=1}^n x_{i} y_{i} - \frac{1}{n} \sum_{i=1}^n y_{i} \sum_{i=1}^n x_{i} + \frac{\beta}{n} \sum_{i=1}{n}x_{i} \sum_{i=1}^n} {\sum_{i=1}^n x_{i}^2}\)
-
-\(\rightarrow \beta = \frac{\sum_{i=1}^n x_{i} Y_{i} - \frac{1}{n} \sum_{i=1}^n y_{i} \sum_{i=1}^n x_{i}}{\sum_{i=1}^n x_{i}^2 - \frac{1}{n} \sum_{i=1}^n x_{i} \sum_{i=1}^n x_{i}}\)
-
+\[\beta = \frac{ \sum_{i=1}^n x_{i} y_{i} - \frac{1}{n} \sum_{i=1}^n y_{i} \sum_{i=1}^n x_{i} + \frac{\beta}{n} \sum_{i=1}{n}x_{i} \sum_{i=1}^n} {\sum_{i=1}^n x_{i}^2}\]
+\[\rightarrow \beta = \frac{\sum_{i=1}^n x_{i} Y_{i} - \frac{1}{n} \sum_{i=1}^n y_{i} \sum_{i=1}^n x_{i}}{\sum_{i=1}^n x_{i}^2 - \frac{1}{n} \sum_{i=1}^n x_{i} \sum_{i=1}^n x_{i}}\]
 ------
 
-\(\sum_{i=1}^n y_{i}= \sum_{j=1}^n y_{1j} + \sum_{j=1}^n y_{2j}\)
-
-sendo \(y_{1}\) os valores de \(y\) quando \(x=0\) e \(y_{2}\) os
-valores de \(y\) correspondentes a \(x=1\).
+\[\sum_{i=1}^n y_{i}= \sum_{j=1}^n y_{1j} + \sum_{j=1}^n y_{2j}\] sendo
+\(y_{1}\) os valores de \(y\) quando \(x=0\) e \(y_{2}\) os valores de
+\(y\) correspondentes a \(x=1\).
 
 Sabemos que \(\sum_{i=1}^n x_{i} y_{i} = \sum_{j=1}^ny_{2j}\) e que
 \(\sum_{i=1}^n x_{i} = n_{2} = \sum_{i=1}^n x_{i}^2\)
-
-\(\beta = \frac{\sum_{i=1}^n y_{2j} - \frac{1}{n} \sum_{i=1}^n y_{i}(n_{2})}{n_{2}- \frac{(n_{2})^2}{n}}\)
-
-\(\beta = \frac{n \sum_{i=1}{n}y_{2j} - \sum_{i=1}^n y_{i}(n_{2})(\frac{1}{n_{2}})}{n(n_{2})-(n_{2})^2}\)
-
-\(\beta = \frac{n \bar y_{2} - \sum_{i=1}^n y_{i}}{n-n_{2}}\)
-
-\(\beta = \frac{n \bar y_{2} - \sum_{i=1}^n y_{i}}{n_{1}}\)
-
-\(\beta = \frac{n \bar y_{2}}{n_{1}} - \frac{ \sum_{i=1}^n y_{1j}}{n_{1}} - \frac{\sum_{i=1}^n y_{2j}}{n_{1}}\)
-
-\(\beta = \frac{n}{n_{1}}\bar y_{2} - \bar y_{1} - \frac{n_{2} \bar y_{2}}{n_{1}}\)
-
-\(\beta = \frac{(n_{1}+n_{2})\bar y_{2} - n_{1}\bar y_{1} - n_{2} \bar y_{2}}{n_{1}}\)
-
-\(\rightarrow \beta = \bar y_{2} - \bar y_{1}\)
-
-------
+\[\beta = \frac{\sum_{i=1}^n y_{2j} -  \frac{1}{n} \sum_{i=1}^n y_{i}(n_{2})}{n_{2}- \frac{(n_{2})^2}{n}}\]
+\[\beta = \frac{n \sum_{i=1}{n}y_{2j} - \sum_{i=1}^n y_{i}(n_{2})(\frac{1}{n_{2}})}{n(n_{2})-(n_{2})^2}\]
+\[\beta = \frac{n \bar y_{2} - \sum_{i=1}^n y_{i}}{n-n_{2}}\]
+\[\beta = \frac{n \bar y_{2} - \sum_{i=1}^n y_{i}}{n_{1}}\]
+\[\beta = \frac{n \bar y_{2}}{n_{1}} - \frac{ \sum_{i=1}^n y_{1j}}{n_{1}} - \frac{\sum_{i=1}^n y_{2j}}{n_{1}}\]
+\[\beta = \frac{n}{n_{1}}\bar y_{2} - \bar y_{1} - \frac{n_{2} \bar y_{2}}{n_{1}}\]
+\[\beta = \frac{(n_{1}+n_{2})\bar y_{2} - n_{1}\bar y_{1} - n_{2} \bar y_{2}}{n_{1}}\]
+\[\Rightarrow \beta = \bar y_{2} - \bar y_{1}\] ------
 
 Substituindo \(\beta = \bar y_{2} - \bar y_{1}\) em \(\alpha\)
 
-\(\alpha= \frac{1}{n} \sum_{i=1}^n y_{1} - \frac{ \bar y_{2} - \bar y_{1}}{n} \sum_{i=1}^n x_{i}\)
+\[\alpha= \frac{1}{n} \sum_{i=1}^n y_{1} - \frac{ \bar y_{2} - \bar y_{1}}{n} \sum_{i=1}^n x_{i}\]
+\[\alpha= \frac {\sum_{i=1}^n y_{1} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n}\]
+\[\alpha=\frac {\sum_{j=1}^n y_{1j} + \sum_{j=1}^n y_{2j} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n}=\frac {n_{1} \frac{\sum_{j=1}^n y_{1j}}{n_{1}} + n_{2} \frac{\sum_{j=1}^n y_{2j}}{n_{2}} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n}\]
+\[\alpha= \frac{n_{1} \bar y_{1} + (n_{2} \bar y_{2} - n_{2} \bar y_{2}) + n_{2} \bar y_{1}}{n}= \frac{(n_{1}+n_{2}) \bar y_{1}}{n}\]
+\[\Rightarrow \alpha = \bar y_{1}\]
 
-\(\alpha= \frac {\sum_{i=1}^n y_{1} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n}\)
-
-\(\alpha=\frac {\sum_{j=1}^n y_{1j} + \sum_{j=1}^n y_{2j} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n}=\frac {n_{1} \frac{\sum_{j=1}^n y_{1j}}{n_{1}} + n_{2} \frac{\sum_{j=1}^n y_{2j}}{n_{2}} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n}\)
-
-\(\alpha= \frac{n_{1} \bar y_{1} + (n_{2} \bar y_{2} - n_{2} \bar y_{2}) + n_{2} \bar y_{1}}{n}= \frac{(n_{1}+n_{2}) \bar y_{1}}{n}\)
-
-\(\rightarrow \alpha = \bar y_{1}\)
 
 \newpage
 \singlespacing 
-\bibliography{/home/be/viabianna/Dropbox/master.bib}
+\bibliography{/home/jtrecenti/Dropbox/master.bib}
 
 \end{document}
