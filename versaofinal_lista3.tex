@@ -274,7 +274,10 @@ Devido a este valor, a correlação está mais elevada.
 
 Dado que o resultado do coeficiente angular foi igual a -0.0001209,
 podemos observar que consiste em um valor negativo, ou seja, o preço e a
-colheita são inversamente proporcionais.
+colheita são inversamente proporcionais. O valor deste coeficiente
+angular parece baixo (praticamente uma reta horizontal) devido à
+diferença de escala. Mas ainda assim a correlação é forte como observado
+na questão anterior.
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -336,10 +339,15 @@ não aumenta a variabilidade dos dados, então o gráfico é homocedástico.
 Através dos gráficos podemos observar que ocoreu uma considerável
 colheita no ano de 1943, que resultou no pior preço e no ano de 1952
 ocorreu a menor colheita deste intervalo de tempo. O resto dos valores
-coletados está na faixa de 5000 a 10900 milhares de hectolitros. Em
-relação ao preço, há picos nos anos de 1946, 1961, 1952 e 1958, que são
-os anos nos quais ocorreram as piores colheitas, e nos anos de 1944,
+coletados está na faixa de 5000 a 10900 milhares de hectolitros.
+
+Em relação ao preço, há picos nos anos de 1946, 1961, 1952 e 1958, que
+são os anos nos quais ocorreram as piores colheitas, e nos anos de 1944,
 1943 e 1954, quando foram relatados os menores preços.
+
+É fácil observar neste gráfico a correlação negativa entre preço e
+colheita, quando a colheita apresenta um pico alto ou baixo em um ano, o
+preço apresenta pico inverso no mesmo ano.
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -372,7 +380,7 @@ podemos observar que os valores do meio estão mais próximos da linha
 \KeywordTok{library} \NormalTok{(magrittr)}
 \NormalTok{dados <-}\StringTok{ }\KeywordTok{read.csv2}\NormalTok{(}\StringTok{"/home/be/viabianna/Downloads/dadosmalariaCEA15P14.csv"}\NormalTok{)}
 \CommentTok{#Retirar os dados que contém N/A}
-\NormalTok{dados %>%}\StringTok{ }\KeywordTok{subset}\NormalTok{(!}\KeywordTok{is.na}\NormalTok{(pc)) %>%}\StringTok{ }\KeywordTok{subset}\NormalTok{(!}\KeywordTok{is.na}\NormalTok{(peso)) %>%}\StringTok{ }\KeywordTok{subset}\NormalTok{(!}\KeywordTok{is.na}\NormalTok{(est))}
+\NormalTok{dados <-}\StringTok{ }\NormalTok{dados %>%}\StringTok{ }\KeywordTok{subset}\NormalTok{(!}\KeywordTok{is.na}\NormalTok{(pc)) %>%}\StringTok{ }\KeywordTok{subset}\NormalTok{(!}\KeywordTok{is.na}\NormalTok{(peso)) %>%}\StringTok{ }\KeywordTok{subset}\NormalTok{(!}\KeywordTok{is.na}\NormalTok{(est))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -396,7 +404,7 @@ podemos observar que os valores do meio estão mais próximos da linha
 \end{Shaded}
 
 \begin{verbatim}
-## [1] NA
+## [1] 0.7036036
 \end{verbatim}
 
 \begin{Shaded}
@@ -407,7 +415,7 @@ podemos observar que os valores do meio estão mais próximos da linha
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-8-2.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-10-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -417,7 +425,7 @@ podemos observar que os valores do meio estão mais próximos da linha
 \end{Shaded}
 
 \begin{verbatim}
-## [1] NA
+## [1] 0.6101827
 \end{verbatim}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
@@ -438,24 +446,17 @@ podemos observar que os valores do meio estão mais próximos da linha
 ## 
 ## Coefficients:
 ## (Intercept)   dados$peso  
-##    26.06791      0.00244
+##   26.061047     0.002441
 \end{verbatim}
 
 A partir destes dados, sabemos que a reta de regressão para Perímetro
 Cefálico x Peso (que é a variável que apresenta maior correlação) será
 
-\(y = 0.002x + 26.067\)
-
-portanto, o perímetro cefálico, em centímetros, esperado para um bebê de
-3000g é:
-
-\(y= 0.002*3000 + 26.067\)
-
-\(y= 32.067\)
+\(y = 0,0024x + 26,0610\)
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{equação <-}\StringTok{ }\NormalTok{(}\KeywordTok{lm}\NormalTok{(dados$pc~dados$est))}
+\NormalTok{equação <-}\StringTok{ }\NormalTok{(}\KeywordTok{lm}\NormalTok{(dados$pc~dados$est+dados$peso))}
 \NormalTok{equação}
 \end{Highlighting}
 \end{Shaded}
@@ -463,24 +464,25 @@ portanto, o perímetro cefálico, em centímetros, esperado para um bebê de
 \begin{verbatim}
 ## 
 ## Call:
-## lm(formula = dados$pc ~ dados$est)
+## lm(formula = dados$pc ~ dados$est + dados$peso)
 ## 
 ## Coefficients:
-## (Intercept)    dados$est  
-##     10.2103       0.4824
+## (Intercept)    dados$est   dados$peso  
+##   20.685784     0.140293     0.001972
 \end{verbatim}
 
-Já a reta Perímetro Cefálico x Estatura (que apresenta menor correlação)
-será
+Já a reta Perímetro Cefálico x Estatura e Peso será
 
-\(y=0.482x + 10.210\)
+\(y=0,1402x_{e} +0,0019 x_{p} + 20,6857\)
 
 Assim sendo, o perímetro cefálico esperado, em centímetros, para um
-recém nascido de 50cm será:
+recém nascido de 50cm e 3kg será:
 
-\(y= 0.482 * 50 + 10.210\)
+\(y=0,1402*50+0,0019*3000+ 20,6857\)
 
-\(y= 34.310\)
+\(y= 7,0100 + 5,7000 + 20,6857\)
+
+\(y= 33,3957\)
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -511,11 +513,7 @@ recém nascido de 50cm será:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Warning: Removed 70 rows containing missing values (geom_point).
-\end{verbatim}
-
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-12-1.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-15-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -549,21 +547,20 @@ recém nascido de 50cm será:
 ## lm(formula = dados3$dados.pc ~ dados3$dados.grupo + dados3$idadecat)
 ## 
 ## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -9.616 -1.063  0.384  1.384  5.384 
+##     Min      1Q  Median      3Q     Max 
+## -9.6159 -1.0579  0.3841  1.3841  5.3841 
 ## 
 ## Coefficients:
 ##                    Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)         34.0626     0.1240 274.756  < 2e-16 ***
-## dados3$dados.grupo  -0.4467     0.1561  -2.861  0.00439 ** 
-## dados3$idadecat      0.4748     0.3728   1.273  0.20342    
+## (Intercept)         34.0579     0.1244 273.840  < 2e-16 ***
+## dados3$dados.grupo  -0.4420     0.1565  -2.825  0.00491 ** 
+## dados3$idadecat      0.4771     0.3731   1.279  0.20157    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 1.747 on 527 degrees of freedom
-##   (70 observations deleted due to missingness)
-## Multiple R-squared:  0.01885,    Adjusted R-squared:  0.01512 
-## F-statistic: 5.062 on 2 and 527 DF,  p-value: 0.006647
+## Residual standard error: 1.748 on 526 degrees of freedom
+## Multiple R-squared:  0.01853,    Adjusted R-squared:  0.0148 
+## F-statistic: 4.967 on 2 and 526 DF,  p-value: 0.007298
 \end{verbatim}
 
 \begin{Shaded}
@@ -574,7 +571,7 @@ recém nascido de 50cm será:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-14-1.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-17-1.pdf}
 
 O modelo está ajustando o perímetro cefálico em relação ao grupo da
 gestante (0=não infectada e 1=infectada) e a idade da gestante (0= até
@@ -623,7 +620,7 @@ negativo & falsos negativos (FN) & verdadeiros negativos
 total & total positivos (VP+FN) & total negativos (FP+VN\tabularnewline
 -------------- & ----------- & -----------\tabularnewline
 desempenho & sensibilidade & especificidade\tabularnewline
-& \(S=VP/(VP+FN)\) & \(E=VN/(FP+VN)\)\tabularnewline
+& \(S= \frac{VP}{(VP+FN)}\) & \(E= \frac{VN}{(FP+VN)}\)\tabularnewline
 \bottomrule
 \end{longtable}
 

@@ -62,7 +62,7 @@ abline(lm (preco ~ colheita))
 lm (preco ~ colheita)
 
 ```
-<p>  Dado que o resultado do coeficiente angular foi igual a -0.0001209, podemos observar que consiste em um valor negativo, ou seja, o preço e a colheita são inversamente proporcionais.
+<p>  Dado que o resultado do coeficiente angular foi igual a -0.0001209, podemos observar que consiste em um valor negativo, ou seja, o preço e a colheita são inversamente proporcionais. O valor deste coeficiente angular parece baixo (praticamente uma reta horizontal) devido à diferença de escala. Mas ainda assim a correlação é forte como observado na questão anterior.
  
 ---
  
@@ -87,7 +87,7 @@ abline(0,0)
 par(mar=c(4,4,4,4))
 #grafico de dispersão ano x colheita
 plot (colheita~ano, type="o", col="darkgray", ylab = "", pch=16,
-      main = "Gráfico colheita x ano x preço")
+      main = "Gráfico colheita e preço x ano")
 mtext("Colheita", side = 2, line = 2.5, col="darkgray")
 par(new=TRUE)
 #grafico de dispersão ano x preço
@@ -95,7 +95,10 @@ plot(preco~ano, axes=FALSE, type='o', col='black', ann=FALSE, pch=18)
 mtext("Preço", side = 4, line = 2.5, col="black")
 axis(4)
 ```
-<p>  Através dos gráficos podemos observar que ocoreu uma considerável colheita no ano de 1943, que resultou no pior preço e no ano de 1952 ocorreu a menor colheita deste intervalo de tempo. O resto dos valores coletados está na faixa de 5000 a 10900 milhares de hectolitros. Em relação ao preço, há picos nos anos de 1946, 1961, 1952 e 1958, que são os anos nos quais ocorreram as piores colheitas, e nos anos de 1944, 1943 e 1954, quando foram relatados os menores preços.
+<p>Através dos gráficos podemos observar que ocoreu uma considerável colheita no ano de 1943, que resultou no pior preço e no ano de 1952 ocorreu a menor colheita deste intervalo de tempo. O resto dos valores coletados está na faixa de 5000 a 10900 milhares de hectolitros.
+<p>Em relação ao preço, há picos nos anos de 1946, 1961, 1952 e 1958, que são os anos nos quais ocorreram as piores colheitas, e nos anos de 1944, 1943 e 1954, quando foram relatados os menores preços.
+<p>É fácil observar neste gráfico a correlação negativa entre preço e colheita, quando a colheita apresenta um pico alto ou baixo em um ano, o preço apresenta pico inverso no mesmo ano.
+
 
 ---
 
@@ -119,7 +122,7 @@ qqline(residuos, col="red")
 library (magrittr)
 dados <- read.csv2("/home/be/viabianna/Downloads/dadosmalariaCEA15P14.csv")
 #Retirar os dados que contém N/A
-dados %>% subset(!is.na(pc)) %>% subset(!is.na(peso)) %>% subset(!is.na(est))
+dados <- dados %>% subset(!is.na(pc)) %>% subset(!is.na(peso)) %>% subset(!is.na(est))
 ```
 <p>
 
@@ -129,11 +132,20 @@ dados %>% subset(!is.na(pc)) %>% subset(!is.na(peso)) %>% subset(!is.na(est))
 #Gráfico de Dispersão Perímetro Cefálico x Peso
 plot(dados$peso~dados$pc, xlab="Peso", ylab="Perímetro Cefálico",
      main= "Gráfico de Dispersão Perímetro Cefálico x Peso")
+```
+<p>
+```{r}
 #Correlação Perímetro Cefálico x Peso
 cor(dados$peso,dados$pc)
+```
+<p>
+```{r}
 #Gráfico de Dispersão Perímetro Cefálico x Estatura
 plot(dados$est~dados$peso, xlab="Estatura", ylab="Perímetro Cefálico",
      main= "Gráfico de Dispersão Perímetro Cefálico x Estatura")
+```
+<p>
+```{r}
 #Correlação Perímetro Cefálico x Estatura
 cor(dados$pc,dados$est)
 
@@ -150,29 +162,25 @@ equação
 ```
 <p>A partir destes dados, sabemos que a reta de regressão para Perímetro Cefálico x Peso (que é a variável que apresenta maior correlação) será
 <p>
-$y = 0.002x + 26.067$
-<p>portanto, o perímetro cefálico, em centímetros, esperado para um bebê de 3000g é:
-<p>
-$y= 0.002*3000 + 26.067$
-<p>
-$y= 32.067$
+$y = 0,0024x + 26,0610$
 <p>
 
 ```{r}
-equação <- (lm(dados$pc~dados$est))
+equação <- (lm(dados$pc~dados$est+dados$peso))
 equação
 ```
 
 <p>
-Já a reta Perímetro Cefálico x Estatura (que apresenta menor correlação) será
+Já a reta Perímetro Cefálico x Estatura e Peso será
 <p>
-$y=0.482x + 10.210$
+$y=0,1402x_{e} +0,0019 x_{p} + 20,6857$
 <p>
-Assim sendo, o perímetro cefálico esperado, em centímetros, para um recém nascido de 50cm será:
+Assim sendo, o perímetro cefálico esperado, em centímetros, para um recém nascido de 50cm e 3kg será:
 <p>
-$y= 0.482 * 50 + 10.210$
+$y=0,1402*50+0,0019*3000+ 20,6857$
 <p>
-$y= 34.310$
+$y= 7,0100 + 5,7000 + 20,6857$<p>
+$y= 33,3957$
 
 ---
 
@@ -242,4 +250,4 @@ plot(fit1, caption = c("Resíduos x Ajustados", "QQ-Plot Normal",
 |total | total positivos (VP+FN)| total negativos (FP+VN|
 |-------------- | -----------|-----------|
 |desempenho| sensibilidade| especificidade|
-|  | $S=VP/(VP+FN)$ | $E=VN/(FP+VN)$|
+|  | $S= \frac{VP}{(VP+FN)}$ | $E= \frac{VN}{(FP+VN)}$|
