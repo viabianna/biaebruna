@@ -91,10 +91,7 @@
 \let\Oldincludegraphics\includegraphics
 \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
 
-\title{Estatistica Descritiva - lista 3 \thanks{Replication files are available on the author's Github account
-(\url{http://github.com/svmiller}). \textbf{Current version}: maio 24,
-2017; \textbf{Corresponding author}:
-\href{mailto:svmille@clemson.edu}{\nolinkurl{svmille@clemson.edu}}.}  }
+\title{Estatistica Descritiva - lista 3  }
 
 
 
@@ -139,7 +136,7 @@
 \hypersetup{breaklinks=true,
             bookmarks=true,
             pdfauthor={Bruna Umino, Beatriz Vianna (IME - USP)},
-             pdfkeywords = {pandoc, r markdown, knitr},  
+             pdfkeywords = {},  
             pdftitle={Estatistica Descritiva - lista 3},
             colorlinks=true,
             citecolor=blue,
@@ -187,10 +184,7 @@
 \noindent professora Marcia D'Elia Branco
 
 
-\vskip 8.5pt \noindent \emph{Keywords}: pandoc, r markdown, knitr \par
-
     \hbox{\vrule height .2pt width 39.14pc}
-
 
 
 \end{abstract}
@@ -213,6 +207,8 @@
 \NormalTok{tabela <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(ano, colheita, preco)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \section{1a)}\label{a}
 
@@ -244,6 +240,8 @@ significativa e negativa (ou seja, quanto menor a colheita, mais alto
 fica o preço), que está sendo influenciada pelo dado do ano de 1943.
 Devido a este valor, a correlação está mais elevada.
 
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
 \section{1b)}\label{b}
 
 \begin{Shaded}
@@ -256,7 +254,7 @@ Devido a este valor, a correlação está mais elevada.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-4-1.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-3-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -277,6 +275,8 @@ Devido a este valor, a correlação está mais elevada.
 Dado que o resultado do coeficiente angular foi igual a -0.0001209,
 podemos observar que consiste em um valor negativo, ou seja, o preço e a
 colheita são inversamente proporcionais.
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \section{1c)}\label{c}
 
@@ -307,10 +307,12 @@ colheita são inversamente proporcionais.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-5-1.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-4-1.pdf}
 
 Observando o gráfico, podemos ver que aumentando o valor da colheita,
 não aumenta a variabilidade dos dados, então o gráfico é homocedástico.
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \section{1d)}\label{d}
 
@@ -329,7 +331,8 @@ não aumenta a variabilidade dos dados, então o gráfico é homocedástico.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-6-1.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-5-1.pdf}
+
 Através dos gráficos podemos observar que ocoreu uma considerável
 colheita no ano de 1943, que resultou no pior preço e no ano de 1952
 ocorreu a menor colheita deste intervalo de tempo. O resto dos valores
@@ -337,6 +340,8 @@ coletados está na faixa de 5000 a 10900 milhares de hectolitros. Em
 relação ao preço, há picos nos anos de 1946, 1961, 1952 e 1958, que são
 os anos nos quais ocorreram as piores colheitas, e nos anos de 1944,
 1943 e 1954, quando foram relatados os menores preços.
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \section{1e)}\label{e}
 
@@ -350,10 +355,15 @@ os anos nos quais ocorreram as piores colheitas, e nos anos de 1944,
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-7-1.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-6-1.pdf}
+
 Os quantis dos resíduos não se aproximam muito para uma normal, mas
 podemos observar que os valores do meio estão mais próximos da linha
-\(Y=X\) e as caudas se afastam consideravelmente. --- \#Questao 2
+\(Y=X\) e as caudas se afastam consideravelmente.
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\section{Questao 2}\label{questao-2}
 
 \section{2a)}\label{a-1}
 
@@ -366,20 +376,22 @@ podemos observar que os valores do meio estão mais próximos da linha
 \end{Highlighting}
 \end{Shaded}
 
+\section{2a)}\label{a-2}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{#Gráfico de Dispersão Perímetro Cefálico x Peso}
-\KeywordTok{plot}\NormalTok{(dados$pc~dados$peso, }\DataTypeTok{xlab=}\StringTok{"Perímetro Cefálico"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Peso"}\NormalTok{,}
+\KeywordTok{plot}\NormalTok{(dados$peso~dados$pc, }\DataTypeTok{xlab=}\StringTok{"Peso"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Perímetro Cefálico"}\NormalTok{,}
      \DataTypeTok{main=} \StringTok{"Gráfico de Dispersão Perímetro Cefálico x Peso"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-9-1.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-8-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{#Correlação Perímetro Cefálico x Peso}
-\KeywordTok{cor}\NormalTok{(dados$pc,dados$peso)}
+\KeywordTok{cor}\NormalTok{(dados$peso,dados$pc)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -390,12 +402,12 @@ podemos observar que os valores do meio estão mais próximos da linha
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{#Gráfico de Dispersão Perímetro Cefálico x Estatura}
-\KeywordTok{plot}\NormalTok{(dados$pc~dados$est, }\DataTypeTok{xlab=}\StringTok{"Perímetro Cefálico"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Estatura"}\NormalTok{,}
+\KeywordTok{plot}\NormalTok{(dados$est~dados$peso, }\DataTypeTok{xlab=}\StringTok{"Estatura"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Perímetro Cefálico"}\NormalTok{,}
      \DataTypeTok{main=} \StringTok{"Gráfico de Dispersão Perímetro Cefálico x Estatura"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-9-2.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-8-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -407,6 +419,8 @@ podemos observar que os valores do meio estão mais próximos da linha
 \begin{verbatim}
 ## [1] NA
 \end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \section{2b)}\label{b-1}
 
@@ -430,14 +444,14 @@ podemos observar que os valores do meio estão mais próximos da linha
 A partir destes dados, sabemos que a reta de regressão para Perímetro
 Cefálico x Peso (que é a variável que apresenta maior correlação) será
 
-\(y = 0.002x + 26.061\)
+\(y = 0.002x + 26.067\)
 
 portanto, o perímetro cefálico, em centímetros, esperado para um bebê de
 3000g é:
 
-\(y= 0.002*3000 + 26.061\)
+\(y= 0.002*3000 + 26.067\)
 
-\(y= 32.061\)
+\(y= 32.067\)
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -459,14 +473,18 @@ portanto, o perímetro cefálico, em centímetros, esperado para um bebê de
 Já a reta Perímetro Cefálico x Estatura (que apresenta menor correlação)
 será
 
-\(y=0.482x + 10.21\)
+\(y=0.482x + 10.210\)
 
 Assim sendo, o perímetro cefálico esperado, em centímetros, para um
 recém nascido de 50cm será:
 
-\(y= 0.482 * 50 + 10.21\)
+\(y= 0.482 * 50 + 10.210\)
 
-\(y= 34.31\) \#2c)
+\(y= 34.310\)
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\section{2c)}\label{c-1}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -485,10 +503,10 @@ recém nascido de 50cm será:
 \KeywordTok{library}\NormalTok{(ggplot2)}
 \NormalTok{legenda <-}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(dados2$dados.grupo)}
 \KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =} \NormalTok{dados2, }
-      \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{dados2$dados.pc, }\DataTypeTok{y =}\NormalTok{dados2$dados.peso, }\DataTypeTok{colour =} \NormalTok{legenda)) +}
+      \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \NormalTok{dados2$dados.peso, }\DataTypeTok{y =}\NormalTok{dados2$dados.pc, }\DataTypeTok{colour =} \NormalTok{legenda)) +}
 \StringTok{      }\KeywordTok{geom_point}\NormalTok{()+}
-\StringTok{      }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Perímetro Cefálico"}\NormalTok{)+}
-\StringTok{      }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Peso"}\NormalTok{)+}
+\StringTok{      }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Peso"}\NormalTok{)+}
+\StringTok{      }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Perímetro Cefálico"}\NormalTok{)+}
 \StringTok{      }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=}\StringTok{"Gráfico de Dispersão Perímetro Cefálico x Peso"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -497,7 +515,9 @@ recém nascido de 50cm será:
 ## Warning: Removed 70 rows containing missing values (geom_point).
 \end{verbatim}
 
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-13-1.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \section{2d)}\label{d-1}
 
@@ -554,7 +574,7 @@ recém nascido de 50cm será:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-15-1.pdf}
+\includegraphics{versaofinal_lista3_files/figure-latex/unnamed-chunk-14-1.pdf}
 
 O modelo está ajustando o perímetro cefálico em relação ao grupo da
 gestante (0=não infectada e 1=infectada) e a idade da gestante (0= até
@@ -573,9 +593,9 @@ aproxima de uma normal, exceto nas caudas.
 
 \section{Questão 3}\label{questao-3}
 
- Ao se fazer um diagnóstico binário, no qual Y assume apenas dois
-valores (positivo e negativo), queremos uma regra de predição que
-minimize os erros cometidos. Se tomarmos \(\pi =1\) por exemplo, nosso Y
+Ao se fazer um diagnóstico binário, no qual Y assume apenas dois valores
+(positivo e negativo), queremos uma regra de predição que minimize os
+erros cometidos. Se tomarmos \(\pi =1\) por exemplo, nosso \(Y_{i}\)
 sempre será positivo. Isso irá maximizar o diagnóstico de verdadeiros
 positivos, mas também irá minimizar o diagnóstico dos quadros negativos,
 ou seja, também teremos muitos falsos positivos (valores negativos que
@@ -584,24 +604,26 @@ foram diagnosticados erroneamente como positivos).
 Para a escolha do valor de pi é utilizada a curva ROC (do inglês
 Receiver Operating Characteristic - Característica de operação do
 receptor). Este gráfico apresenta em seu eixo vertical
-P(Y=1\textbar{}Y=1) - chamado sensibilidade - e em seu eixo horizontal
-1-P(Y=0\textbar{}Y=0) - chamado especificidade. A curva apresenta a
+\(P(Y_{i}=1|Y=1)\) - chamado sensibilidade - e em seu eixo horizontal
+\(1-P(Y_{i}=0|Y=0)\) - chamado especificidade. A curva apresenta a
 associação entre as duas variáveis (sensibilidade e especificidade) para
 cada valor de pi entre 0 e 1. O que procuramos é o ponto da curva que
 apresenta um valor muito alto para a variável do eixo y e um muito baixo
 para a variável do eixo x.
 
-\begin{longtable}[]{@{}lll@{}}
+\begin{longtable}[]{@{}lcr@{}}
 \toprule
-Resultado do teste sob investigação & positivos &
-negativos\tabularnewline
+Resultado do teste & positivos & negativos\tabularnewline
 \midrule
 \endhead
-positivo & verdadeiros positivos & falsos positivos\tabularnewline
-negativo & falsos negativos & verdadeiros negativos\tabularnewline
-total & total positivos & total negativos\tabularnewline
------- & ------ & ------\tabularnewline
+positivo & verdadeiros positivos (VP) & falsos
+positivos(FP)\tabularnewline
+negativo & falsos negativos (FN) & verdadeiros negativos
+(VN)\tabularnewline
+total & total positivos (VP+FN) & total negativos (FP+VN\tabularnewline
+-------------- & ----------- & -----------\tabularnewline
 desempenho & sensibilidade & especificidade\tabularnewline
+& \(S=VP/(VP+FN)\) & \(E=VN/(FP+VN)\)\tabularnewline
 \bottomrule
 \end{longtable}
 

@@ -243,24 +243,3 @@ plot(fit1, caption = c("Resíduos x Ajustados", "QQ-Plot Normal",
 |-------------- | -----------|-----------|
 |desempenho| sensibilidade| especificidade|
 |  | $S=VP/(VP+FN)$ | $E=VN/(FP+VN)$|
-
----
-#Questão 4
-
-MQ $\rightarrow$ mínimos quadrados
-<p>
-$y_{i}= \alpha + \beta x_{i} + \varepsilon_{i} \rightarrow \varepsilon_{i} = y_{i} - \alpha - \beta x_{i}$
-<p>
-Como x tem valores o ou 1:
-<p>
-$x = 0 \rightarrow \varepsilon_{i} = y_{i}- \alpha$<p>
-$x= 1 \rightarrow \varepsilon_{i} = y_{i} - \alpha - \beta$
-<p>
-$\varepsilon_{i} = y_{i} - \alpha - \beta x_{i}$
-$\rightarrow \sum_{i=i}^n$
-$( \varepsilon_{i})^2 = \sum_{i=1}^n$
-$( y_{i} - \alpha - \beta x_{i} )^2$
-$= \sum_{i=1}^n$
-$y_{i}^2 +\alpha^2 +$
-$\beta_^2 x_{i}^2 -$
-$2 \alpha y_{i} - 2 \beta x_{i} y{i} + 2 \alpha \beta x_{i}) $
