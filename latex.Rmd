@@ -20,7 +20,7 @@ Como $x$ tem valores 0 ou 1:
 $x = 0 \rightarrow \varepsilon_{i} = y_{i}- \alpha$<p>
 $x= 1 \rightarrow \varepsilon_{i} = y_{i} - \alpha - \beta$
 <p>
-$\varepsilon_{i} = y_{i} - \alpha - \beta x_{i} \rightarrow \sum_{i=i}^n ( \varepsilon_{i})^2 = \sum_{i=1}^n ( y_{i} - \alpha - \beta x_{i} )^2 = \sum_{i=1}^n y_{i}^2 + \alpha^2 + \beta^2 x_{i}^2 - 2 \alpha y_{i} - 2 \beta x_{i} y_{i} + 2 \alpha \beta x_{i})$
+$\varepsilon_{i} = y_{i} - \alpha - \beta x_{i} \rightarrow \sum_{i=i}^n ( \varepsilon_{i})^2 = \sum_{i=1}^n ( y_{i} - \alpha - \beta x_{i} )^2 = \sum_{i=1}^n (y_{i}^2 + \alpha^2 + \beta^2 x_{i}^2 - 2 \alpha y_{i} - 2 \beta x_{i} y_{i} + 2 \alpha \beta x_{i})$
 <p>
 
 Fazendo os mínimos quadrados:<p>
@@ -44,22 +44,22 @@ $\frac{d}{d \beta} \sum_{i=1}^n 2 \beta x_{i}^2 - 2 x_{i} y_{i} +2 \alpha= 2 \su
 Se:<p>
 
 $n \alpha - \sum_{i=1}^n y_{i} + \beta \sum_{i=1}^n x_{i} = 0$<P>
-$\beta \sum_{i=1}^n x_{i}² - \sum_{i=1}^n x_{i} y_{i} + \alpha \sum_{i=1}^n = 0$<p>
+$\beta \sum_{i=1}^n x_{i}^2 - \sum_{i=1}^n x_{i} y_{i} + \alpha \sum_{i=1}^n = 0$<p>
 então<p>
 $\alpha = \frac{1}{n} \sum_{i=1}^n y_{i} - \frac{ \beta}{n} \sum_{i=1}^n x_{i}$<p>
 $\beta = \frac{ \sum_{i=1}^n x_{i} y_{i} - \alpha \sum_{i=1}^n x_{i}}{\sum_{i=1}^n x_{i}^2}$<p>
 Substituindo $\alpha$ em $\beta$ temos:<p>
 $\beta = \frac{ \sum_{i=1}^n x_{i} y_{i} - \frac{1}{n} \sum_{i=1}^n y_{i} \sum_{i=1}^n x_{i} + \frac{\beta}{n} \sum_{i=1}{n}x_{i} \sum_{i=1}^n} {\sum_{i=1}^n x_{i}^2}$<p>
-$\rightarrow \beta = \frac{\sum_{i=1}^n x_{i} Y_{i} - \frac{1}{n} \sum_{i=1}^n y_{i} \sum_{i=1}^n x_{i}}{\sum_{i=1}^n x_{i}^2 - \frac{1}{n} \sum_{i=1}^n x_{i} \sum_{i=1}{n} X_{i}}$<p>
+$\rightarrow \beta = \frac{\sum_{i=1}^n x_{i} Y_{i} - \frac{1}{n} \sum_{i=1}^n y_{i} \sum_{i=1}^n x_{i}}{\sum_{i=1}^n x_{i}^2 - \frac{1}{n} \sum_{i=1}^n x_{i} \sum_{i=1}^n x_{i}}$<p>
 -------------<p>
-$\sum_{i=1}^n y_{i}= \sum_{j=1}^n y_{0j} + \sum_{j=1}^n y_{1j}$<p>
-sendo $y_{0}$ os valores de $y$ quando $x=0$ e $y_{1}$ os valores de $y$ correspondentes a $x=1$<p>
+$\sum_{i=1}^n y_{i}= \sum_{j=1}^n y_{1j} + \sum_{j=1}^n y_{2j}$<p>
+sendo $y_{1}$ os valores de $y$ quando $x=0$ e $y_{2}$ os valores de $y$ correspondentes a $x=1$<p>
 Sabemos que $\sum_{i=1}^n x_{i} y_{i} = \sum_{j=1}^ny_{2j}$ e que $\sum_{i=1}^n x_{i} = n_{2} = \sum_{i=1}^n x_{i}^2$<p>
-$\beta = \frac{\sum_{i=1}{n}y_{2j} -  \frac{1}{n} \sum_{i=1}^n y_{i}(n_{2})}{n_{2}- \frac{(n_{2})^2}{n}} \rightarrow \beta = \frac{n \sum_{i=1}{n}y_{2j} - \sum_{i=1}^n y_{i}(n_{2})(\frac{1}{n_{2}})}{n(n_{2})-(n_{2})^2}\rightarrow \beta = \frac{n \bar y_{2} - \sum_{i=1}^n y_{i}}{n-n_{2}}\rightarrow \beta = \frac{n \bar y_{2} - \sum_{i=1}^n y_{i}}{n_{1}}$<p>
-$\rightarrow \beta = \frac{n \bar y_{2}}{n_{1}} - \frac{ \sum_{i=1}^n y_{1j}}{n_{1}} - \frac{\sum_{i=1}^n Y_{2j}}{n_{1}} \rightarrow \beta = \frac{n}{n_{1}}\bar y_{2} - \bar y_{1} - \frac{n_{2} \bar y_{2}}{n_{1}}\rightarrow \beta = \frac{(n_{1}+n_{2})\bar y_{2} - n_{1}\bar y_{1} - n_{2} \bar y_{2}}{n_{1}} \rightarrow$<p>
+$\beta = \frac{\sum_{i=1}^n y_{2j} -  \frac{1}{n} \sum_{i=1}^n y_{i}(n_{2})}{n_{2}- \frac{(n_{2})^2}{n}} \rightarrow \beta = \frac{n \sum_{i=1}{n}y_{2j} - \sum_{i=1}^n y_{i}(n_{2})(\frac{1}{n_{2}})}{n(n_{2})-(n_{2})^2}\rightarrow \beta = \frac{n \bar y_{2} - \sum_{i=1}^n y_{i}}{n-n_{2}}\rightarrow \beta = \frac{n \bar y_{2} - \sum_{i=1}^n y_{i}}{n_{1}}$<p>
+$\rightarrow \beta = \frac{n \bar y_{2}}{n_{1}} - \frac{ \sum_{i=1}^n y_{1j}}{n_{1}} - \frac{\sum_{i=1}^n y_{2j}}{n_{1}} \rightarrow \beta = \frac{n}{n_{1}}\bar y_{2} - \bar y_{1} - \frac{n_{2} \bar y_{2}}{n_{1}}\rightarrow \beta = \frac{(n_{1}+n_{2})\bar y_{2} - n_{1}\bar y_{1} - n_{2} \bar y_{2}}{n_{1}} \rightarrow$<p>
 $\beta = \bar y_{2} - \bar y_{1}$<p>
 -------------<p>
 Substituindo $\beta = \bar y_{2} - \bar y_{1}$ em $\alpha$<p>
-$\alpha= \frac{1}{n} \sum_{i=1}^n y_{1} - \frac{ \bar y_{2} - \bar y_{1}}{n} \sum_{i=1}{n}x_{i} = \frac {\sum_{i=1}^n y_{1} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n} =\frac {\sum_{j=1}^n y_{1j} + \sum_{j=1}^n y_{2j} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n}$<p>
+$\alpha= \frac{1}{n} \sum_{i=1}^n y_{1} - \frac{ \bar y_{2} - \bar y_{1}}{n} \sum_{i=1}^n x_{i} = \frac {\sum_{i=1}^n y_{1} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n} =\frac {\sum_{j=1}^n y_{1j} + \sum_{j=1}^n y_{2j} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n}$<p>
 $=\frac {n_{1} \frac{\sum_{j=1}^n y_{1j}}{n_{1}} + n_{2} \frac{\sum_{j=1}^n y_{2j}}{n_{2}} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n} = \frac{n_{1} \bar y_{1} + (n_{2} \bar y_{2} - n_{2} \bar y_{2}) + n_{2} \bar y_{1}}{n}= \frac{(n_{1}+n_{2}) \bar y_{1}}{n}$<p>
 $\alpha = \bar y_{1}$
