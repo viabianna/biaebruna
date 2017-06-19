@@ -7,8 +7,48 @@ output: pdf_document
 <p>Nomes:
 <p>     Bruna Umino
 <p>     Beatriz Vianna
+
 #Questão 1
 <p>
+
+```{r}
+UPM <- c(100, 100, 125, 125, 150, 150, 175, 175, 200, 200, 225, 225)
+clientes <- c(30, 44, 114, 138, 155, 163, 145, 163, 158, 126, 126, 106)
+```
+
+#1a
+```{r}
+lm(clientes~UPM)
+```
+
+#1b
+```{r}
+modelo1 <- lm(clientes~UPM)
+plot(UPM, clientes, xlab = "UPM", ylab = "número de clientes", main="Gráfico de dispersão com reta ajustada")
+abline(modelo1)
+```
+<p>   Como podemos observar, a reta ajustada não é o melhor modelo para ajustar os dados, pois não se comportam linearmente
+
+#1c
+```{r}
+plot(clientes~UPM, xlab = "UPM", ylab = "número de clientes", main="Gráfico de dispersão com parábola ajustada")
+modelo1 <- lm(clientes~UPM)
+modelo2 <- update(modelo1,.~. +I(UPM^2))
+anova(modelo1,modelo2)
+#abline(modelo1)
+cf.m2 <- coef(modelo2)
+curve(cf.m2[1]+cf.m2[2]*x+cf.m2[3]*x^2, add=T, lty=2)
+```
+
+```{r}
+residuos <- residuals(modelo2)
+plot(residuos, 
+     ylab="Residuos",
+     xlab="UPM + I(UPM^2)",
+     main="Gráfico de resíduos")
+abline(0,0)
+```
+<p>  Observando o gráfico, podemos ver que mesmo com o aumento o valor do eixo x, não aumenta a variabilidade dos dados, então o gráfico é homocedástico.
 
 #Questão 2
 <p>
@@ -35,4 +75,3 @@ plot (tabela$medias~tabela$distancia,
   main="gráfico de dispersão com reta de regressão")
 abline (lm(tabela$medias~tabela$distancia))
 ```
-
