@@ -1,0 +1,325 @@
+---
+output: 
+  pdf_document:
+    citation_package: natbib
+    keep_tex: true
+    fig_caption: true
+    latex_engine: pdflatex
+    template: svm-latex-ms.tex
+title: "Estatística Descritiva - lista 3"
+author:
+- name: "Bruna Umino, Beatriz Vianna"
+  affiliation: IME - USP
+abstract: "Professora Marcia D'Elia Branco"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+geometry: margin=1in
+fontfamily: mathpazo
+fontsize: 11pt
+# spacing: double
+bibliography: ~/Dropbox/master.bib
+biblio-style: apsr
+---
+#Questão 1
+<p>
+
+```{r}
+par(las=1)
+```
+
+
+```{r}
+ano<-c(1942,1943,1944,1945,1946,1947,1948,1949,1950,1951,
+       1952,1953,1954,1955,1956,1957,1958,1959,1960,1961)
+
+colheita<-c(6409, 19835, 10939, 7826, 7165, 7807, 6028, 6037, 6458, 6981,
+            4233, 8790, 8959, 8289, 7910, 6775, 6088, 6381, 8600, 4805)
+
+preco<-c(2.26, 1.64, 1.52, 2.29, 3.54, 2.09, 2.46, 2.50, 2.62, 2.57,
+         3.38, 2.02, 1.68, 1.78, 1.99, 3.02, 3.23, 2.98, 2.74, 3.38)
+tabela <- data.frame(ano, colheita, preco)
+```
+<p>
+---
+
+#1a)
+<p>
+```{r}
+#Grafico de dispersao
+plot( preco ~ colheita, 
+      xlab = "Colheita (em milhares de hectolitros)",
+      ylab = "Preço (escudos/litro)",
+      main = "Gráfico de dispersão")
+#Correlacao linear 
+cor(preco, colheita)
+```
+<p>  Como podemos observar, o gráfico apresenta uma correlação linear significativa e negativa (ou seja, quanto menor a colheita, mais alto fica o preço), que está sendo influenciada pelo dado do ano de 1943. Devido a este valor, a correlação está mais elevada.
+
+---
+
+#1b)
+<p>
+```{r}
+plot( preco ~ colheita, 
+      xlab = "Colheita (em milhares de hectolitros)",
+      ylab = "Preço (escudos/litro)",
+      main = "Gráfico de dispersão com reta de regressão")
+abline(lm (preco ~ colheita))
+lm (preco ~ colheita)
+
+```
+<p>  Dado que o resultado do coeficiente angular foi igual a -0.0001209, podemos observar que consiste em um valor negativo, ou seja, o preço e a colheita são inversamente proporcionais. O valor deste coeficiente angular parece baixo (praticamente uma reta horizontal) devido à diferença de escala. Mas ainda assim a correlação é forte como observado na questão anterior.
+ 
+---
+ 
+#1c)
+<p>
+```{r}
+lm(preco~colheita)
+residuos <- resid(lm(preco~colheita))
+plot(colheita, residuos,
+     ylab="Residuos",
+     xlab="Colheita",
+     main="Gráfico de resíduos") 
+abline(0,0)
+```
+<p>  Observando o gráfico, podemos ver que aumentando o valor da colheita, não aumenta a variabilidade dos dados, então o gráfico é homocedástico.
+
+---
+
+#1d)
+<p>
+```{r}
+par(mar=c(4,4,4,4))
+#grafico de dispersão ano x colheita
+plot (colheita~ano, type="o", col="darkgray", ylab = "", pch=16,
+      main = "Gráfico colheita e preço x ano")
+mtext("Colheita", side = 2, line = 2.5, col="darkgray")
+par(new=TRUE)
+#grafico de dispersão ano x preço
+plot(preco~ano, axes=FALSE, type='o', col='black', ann=FALSE, pch=18)
+mtext("Preço", side = 4, line = 2.5, col="black")
+axis(4)
+```
+<p>Através dos gráficos podemos observar que ocoreu uma considerável colheita no ano de 1943, que resultou no pior preço e no ano de 1952 ocorreu a menor colheita deste intervalo de tempo. O resto dos valores coletados está na faixa de 5000 a 10900 milhares de hectolitros.
+<p>Em relação ao preço, há picos nos anos de 1946, 1961, 1952 e 1958, que são os anos nos quais ocorreram as piores colheitas, e nos anos de 1944, 1943 e 1954, quando foram relatados os menores preços.
+<p>É fácil observar neste gráfico a correlação negativa entre preço e colheita, quando a colheita apresenta um pico alto ou baixo em um ano, o preço apresenta pico inverso no mesmo ano.
+
+
+---
+
+#1e)
+<p>
+```{r}
+qqnorm(residuos, 
+       main = "Gráfico de probabilidades normais", 
+       xlab = "Quantis teóricos", 
+       ylab = "Quantis amostrais")
+qqline(residuos, col="red")
+```
+<p>  Os quantis dos resíduos não se aproximam muito para uma normal, mas podemos observar que os valores do meio estão mais próximos da linha $Y=X$ e as caudas se afastam consideravelmente.
+
+---
+
+#Questao 2
+
+#2a)
+```{r, results="hide"} 
+library (magrittr)
+dados <- read.csv2("dadosmalariaCEA15P14.csv")
+#Retirar os dados que contém N/A
+dados <- dados %>% subset(!is.na(pc)) %>% subset(!is.na(peso)) %>% subset(!is.na(est))
+```
+<p>
+
+#2a)
+<p>
+```{r}
+#Gráfico de Dispersão Perímetro Cefálico x Peso
+plot(dados$peso~dados$pc, xlab="Peso", ylab="Perímetro Cefálico",
+     main= "Gráfico de Dispersão Perímetro Cefálico x Peso")
+```
+<p>
+```{r}
+#Correlação Perímetro Cefálico x Peso
+cor(dados$peso,dados$pc)
+```
+<p>
+```{r}
+#Gráfico de Dispersão Perímetro Cefálico x Estatura
+plot(dados$est~dados$peso, xlab="Estatura", ylab="Perímetro Cefálico",
+     main= "Gráfico de Dispersão Perímetro Cefálico x Estatura")
+```
+<p>
+```{r}
+#Correlação Perímetro Cefálico x Estatura
+cor(dados$pc,dados$est)
+
+```
+
+
+---
+
+#2b)
+<p>
+```{r}
+equação <- (lm(dados$pc~dados$peso))
+equação
+```
+<p>A partir destes dados, sabemos que a reta de regressão para Perímetro Cefálico x Peso (que é a variável que apresenta maior correlação) será
+<p>
+$y = 0,0024x + 26,0610$
+<p>
+
+```{r}
+equação <- (lm(dados$pc~dados$est+dados$peso))
+equação
+```
+
+<p>
+Já a reta Perímetro Cefálico x Estatura e Peso será
+<p>
+$y=0,1402x_{e} +0,0019 x_{p} + 20,6857$
+<p>
+Assim sendo, o perímetro cefálico esperado, em centímetros, para um recém nascido de 50cm e 3kg será:
+<p>
+$y=0,1402*50+0,0019*3000+ 20,6857$
+<p>
+$y= 7,0100 + 5,7000 + 20,6857$<p>
+$y= 33,3957$
+
+---
+
+#2c)
+<p>
+```{r}
+#organização dos dados a serem usados,
+#transformar grupo em variável binária
+dados2 <- data.frame(dados$peso, dados$grupo, dados$pc)
+dadosgrupo <- vector(length=length(dados2$dados.grupo))
+dadosgrupo[which(dados2$dados.grupo!=0)] <- 'Infectada'
+dadosgrupo[which(dados2$dados.grupo==0)] <- "Não Infectada"
+dados2$dados.grupo <- dadosgrupo
+```
+<p>
+```{r}
+library(ggplot2)
+legenda <- as.factor(dados2$dados.grupo)
+ggplot(data = dados2, 
+      aes(x = dados2$dados.peso, y =dados2$dados.pc, colour = legenda)) +
+      geom_point()+
+      xlab("Peso")+
+      ylab("Perímetro Cefálico")+
+      labs(title="Gráfico de Dispersão Perímetro Cefálico x Peso")
+
+```
+
+---
+
+#2d)
+<p>
+```{r}
+#organização dos dados a serem utilizados, transformar grupo em binário
+#transformar idade em binária (maior que 35/ menor ou igual a 35)
+dados3 <- data.frame( dados$grupo, dados$pc, dados$idade)
+dadosgrupo <- vector(length=length(dados3$dados.grupo))
+dadosgrupo[which(dados3$dados.grupo!=0)] <- 1
+dados3$dados.grupo <- dadosgrupo
+dadosgrupo2 <- vector(length=length(dados3$dados.idade))
+dadosgrupo2[which(dados3$dados.idade<=35)] <- 0
+dadosgrupo2[which(dados3$dados.idade>35)] <- 1
+dados3$idadecat<- dadosgrupo2
+```
+<p>
+```{r}
+fit1 <- lm(dados3$dados.pc~dados3$dados.grupo+dados3$idadecat)
+summary(fit1)
+par(mfrow=c(2,2))
+plot(fit1, caption = c("Resíduos x Ajustados", "QQ-Plot Normal",
+                       "Locação e Escala", "resìduos e alavancagem"))
+```
+<p> O modelo está ajustando o perímetro cefálico em relação ao grupo da gestante (0=não infectada e 1=infectada) e a idade da gestante (0= até 35 anos e 1=mais de 35 anos)
+<p> O desvio padrão dos resíduos é 1.748
+<p> Devido aos dados estarem agrupados de forma binária, os gráficos com exceção do qqnorm saem alinhados verticalmente. Em relação ao gráfico de residuos podemos observar que a medida que aumenta o eixo x (a idade e o grupo), diminui a variabilidade dos dados, mostrando uma não homocedastidade. No entanto, analisando o gráfico qqnorm, o modelo se aproxima de uma normal, exceto nas caudas.
+
+---
+
+#Questão 3
+<p>
+  Ao se fazer um diagnóstico binário, no qual $Y$ assume apenas dois valores (positivo e negativo), queremos uma regra de predição que minimize os erros cometidos. Se tomarmos $\pi =1$ por exemplo, nosso $Y_{i}$ sempre será positivo. Isso irá maximizar o diagnóstico de verdadeiros positivos, mas também irá minimizar o diagnóstico dos quadros negativos, ou seja, também teremos muitos falsos positivos (valores negativos que foram diagnosticados erroneamente como positivos).<p>
+  Para a escolha do valor de $\pi$ é utilizada a curva ROC (do inglês Receiver Operating Characteristic - Característica de operação do receptor). Este gráfico apresenta em seu eixo vertical $P(Y_{i}=1|Y=1)$ - chamado sensibilidade -  e em seu eixo horizontal $1-P(Y_{i}=0|Y=0)$ - chamado especificidade. A curva apresenta a associação entre as duas variáveis (sensibilidade e especificidade) para cada valor de $\pi$ entre 0 e 1. O que procuramos é o ponto da curva que apresenta um valor muito alto para a variável do eixo y e um muito baixo para a variável do eixo x.<p>
+A tabela abaixo mostra os possíveis resultados de um teste:<p>
+
+|Resultado do teste | positivos | negativos|
+|------------- | :-------------:|------:|
+|positivo    | verdadeiros positivos (VP)| falsos positivos(FP)|
+|negativo        | falsos negativos (FN) | verdadeiros negativos (VN)|
+|total | total positivos (VP+FN)| total negativos (FP+VN)|
+|-------------- | -----------|-----------|
+|desempenho| sensibilidade| especificidade|
+|  | $S= \frac{VP}{(VP+FN)}$ | $E= \frac{VN}{(FP+VN)}$|
+<p>
+Não existe uma fórmula pré-definida para a escolha do ponto ótimo, com melhor desempenho (sensibilidade e especificidade altas), pois essa escolha também depende do teste que está sendo feito e da diferença entre a gravidade da consequência de um FP ou um FN. Há testes por exemplo nos quais é melhor manter o valor de $\pi$ alto, e diminuir a especificidade para ter maior sensibilidade, pois as consequências de um falso negativo (diagnóstico errado de um exame positivo) seriam piores que as de um falso positivo.<p>
+A curva ROC também é útil na hora de analisar a acurácia de um teste. Um teste de resultados aleatórios com $P(Y_{i}=1)=P(Y_{i}=0)= \frac{1}{2}$ teria como curva ROC esperada a reta $x=y$. Assim sendo, quanto mais a curva ROC se afasta da reta $x=y$, aproximando-se dos cantos esquerdo e superior do gráfico, mais acurado é o teste (com altas sensibilidade e especificidade). 
+
+---
+
+#Questão 4 teste
+
+MQ $\rightarrow$ mínimos quadrados
+
+$$y_{i}= \alpha + \beta x_{i} + \varepsilon_{i} \Rightarrow \varepsilon_{i} = y_{i} - \alpha - \beta x_{i}$$
+
+Como $x$ tem valores 0 ou 1:
+<p>
+$$x = 0 \rightarrow \varepsilon_{i} = y_{i}- \alpha$$
+$$x= 1 \rightarrow \varepsilon_{i} = y_{i} - \alpha - \beta$$
+$$\varepsilon_{i} = y_{i} - \alpha - \beta x_{i} \Rightarrow \sum_{i=i}^n ( \varepsilon_{i})^2$$
+$$\varepsilon_{i} = \sum_{i=1}^n ( y_{i} - \alpha - \beta x_{i} )^2$$
+$$\varepsilon_{i} = \sum_{i=1}^n (y_{i}^2 + \alpha^2 + \beta^2 x_{i}^2 - 2 \alpha y_{i} - 2 \beta x_{i} y_{i} + 2 \alpha \beta x_{i})$$
+
+
+Fazendo os mínimos quadrados:<p>
+$$\frac{d}{d\alpha} \sum_{i=1}^n ( y_{i}^2 + \alpha^2 + \beta^2 x_{i}^2 - 2 \alpha y_{i} - 2 \beta x_{i} y_{i} + 2 \alpha \beta x_{i})$$
+$$= \sum_{i=1}^n 2 \alpha - 2 y_{i} + 2 \beta x_{i} = 2 [n \alpha - \sum_{i=1}^n y_{i} + \beta \sum_{i=1}^n x_{i}]$$
+<p>
+Para provar que é o mínimo:
+<p>
+$$\frac{d}{d \alpha} \sum_{i=1}^n 2 \alpha - 2 y_{i} + 2 \beta x_{i} = 2 > 0$$
+------<p>
+$$\frac{d}{d \beta} \sum_{i=1}^n ( y_{i}^2 + \alpha^2 + \beta^2 x_{i}^2 - 2 \alpha y_{i} - 2 \beta x_{i} y_{i} + 2 \alpha \beta x_{i}) = \sum_{i=1}^n 2 \beta x_{i}^2 - 2 x_{i} y_{i} +2 \alpha x_{i}$$
+$$= 2 [\beta \sum_{i=1}^n x_{i}^2 - \sum_{i=1}^n x_{i} y_ {i} + \alpha \sum_{i=1}^n x_{i}]$$
+<p>
+Para provar que é o mínimo:
+<p>
+$$\frac{d}{d \beta} \sum_{i=1}^n 2 \beta x_{i}^2 - 2 x_{i} y_{i} +2 \alpha= 2 \sum_{i=1}^n x_{i}^2 >0$$ 
+(é sempre positiva dado que $x_{i}$ está ao quadrado)<p>
+------<p>
+Se:<p>
+
+$$n \alpha - \sum_{i=1}^n y_{i} + \beta \sum_{i=1}^n x_{i} = 0$$
+$$\beta \sum_{i=1}^n x_{i}^2 - \sum_{i=1}^n x_{i} y_{i} + \alpha \sum_{i=1}^n = 0$$
+então<p>
+$$\alpha = \frac{1}{n} \sum_{i=1}^n y_{i} - \frac{ \beta}{n} \sum_{i=1}^n x_{i}$$
+$$\beta = \frac{ \sum_{i=1}^n x_{i} y_{i} - \alpha \sum_{i=1}^n x_{i}}{\sum_{i=1}^n x_{i}^2}$$
+Substituindo $\alpha$ em $\beta$ temos:<p>
+$$\beta = \frac{ \sum_{i=1}^n x_{i} y_{i} - \frac{1}{n} \sum_{i=1}^n y_{i} \sum_{i=1}^n x_{i} + \frac{\beta}{n} \sum_{i=1}{n}x_{i} \sum_{i=1}^n} {\sum_{i=1}^n x_{i}^2}$$
+$$\rightarrow \beta = \frac{\sum_{i=1}^n x_{i} Y_{i} - \frac{1}{n} \sum_{i=1}^n y_{i} \sum_{i=1}^n x_{i}}{\sum_{i=1}^n x_{i}^2 - \frac{1}{n} \sum_{i=1}^n x_{i} \sum_{i=1}^n x_{i}}$$
+------<p>
+$$\sum_{i=1}^n y_{i}= \sum_{j=1}^n y_{1j} + \sum_{j=1}^n y_{2j}$$
+sendo $y_{1}$ os valores de $y$ quando $x=0$ e $y_{2}$ os valores de $y$ correspondentes a $x=1$.<p>
+Sabemos que $\sum_{i=1}^n x_{i} y_{i} = \sum_{j=1}^ny_{2j}$ e que $\sum_{i=1}^n x_{i} = n_{2} = \sum_{i=1}^n x_{i}^2$
+$$\beta = \frac{\sum_{i=1}^n y_{2j} -  \frac{1}{n} \sum_{i=1}^n y_{i}(n_{2})}{n_{2}- \frac{(n_{2})^2}{n}}$$
+$$\beta = \frac{n \sum_{i=1}{n}y_{2j} - \sum_{i=1}^n y_{i}(n_{2})(\frac{1}{n_{2}})}{n(n_{2})-(n_{2})^2}$$
+$$\beta = \frac{n \bar y_{2} - \sum_{i=1}^n y_{i}}{n-n_{2}}$$
+$$\beta = \frac{n \bar y_{2} - \sum_{i=1}^n y_{i}}{n_{1}}$$
+$$\beta = \frac{n \bar y_{2}}{n_{1}} - \frac{ \sum_{i=1}^n y_{1j}}{n_{1}} - \frac{\sum_{i=1}^n y_{2j}}{n_{1}}$$
+$$\beta = \frac{n}{n_{1}}\bar y_{2} - \bar y_{1} - \frac{n_{2} \bar y_{2}}{n_{1}}$$
+$$\beta = \frac{(n_{1}+n_{2})\bar y_{2} - n_{1}\bar y_{1} - n_{2} \bar y_{2}}{n_{1}}$$
+$$\Rightarrow \beta = \bar y_{2} - \bar y_{1}$$
+------<p>
+Substituindo $\beta = \bar y_{2} - \bar y_{1}$ em $\alpha$<p>
+$$\alpha= \frac{1}{n} \sum_{i=1}^n y_{1} - \frac{ \bar y_{2} - \bar y_{1}}{n} \sum_{i=1}^n x_{i}$$
+$$\alpha= \frac {\sum_{i=1}^n y_{1} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n}$$
+$$\alpha=\frac {\sum_{j=1}^n y_{1j} + \sum_{j=1}^n y_{2j} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n}=\frac {n_{1} \frac{\sum_{j=1}^n y_{1j}}{n_{1}} + n_{2} \frac{\sum_{j=1}^n y_{2j}}{n_{2}} - n_{2} \bar y_{2} + n_{2} \bar y_{1}}{n}$$
+$$\alpha= \frac{n_{1} \bar y_{1} + (n_{2} \bar y_{2} - n_{2} \bar y_{2}) + n_{2} \bar y_{1}}{n}= \frac{(n_{1}+n_{2}) \bar y_{1}}{n}$$
+$$\Rightarrow \alpha = \bar y_{1}$$
