@@ -1,0 +1,100 @@
+---
+title: "lista 4 - descritiva"
+output: pdf_document
+---
+<p>#Lista 4 - Estatística Descritiva
+<p>#Professora: Márcia D'Elia Branco
+<p>Nomes:
+<p>     Bruna Umino
+<p>     Beatriz Vianna
+
+#Questão 1
+<p>
+
+```{r}
+UPM <- c(100, 100, 125, 125, 150, 150, 175, 175, 200, 200, 225, 225)
+clientes <- c(30, 44, 114, 138, 155, 163, 145, 163, 158, 126, 126, 106)
+```
+
+#1a
+```{r}
+summary(lm(clientes~UPM))
+```
+
+#1b
+```{r}
+modelo1 <- lm(clientes~UPM)
+plot(UPM, clientes, xlab = "UPM", ylab = "número de clientes", main="Gráfico de dispersão com reta ajustada")
+abline(modelo1)
+```
+<p>   Como podemos observar, a reta ajustada não é o melhor modelo para ajustar os dados, pois não se comportam linearmente
+
+#1c
+```{r}
+plot(clientes~UPM, xlab = "UPM", ylab = "número de clientes", main="Gráfico de dispersão com parábola ajustada")
+modelo1 <- lm(clientes~UPM)
+modelo2 <- update(modelo1,.~. +I(UPM^2))
+anova(modelo1,modelo2)
+#abline(modelo1)
+cf.m2 <- coef(modelo2)
+curve(cf.m2[1]+cf.m2[2]*x+cf.m2[3]*x^2, add=T, lty=2)
+```
+
+```{r}
+residuos <- residuals(modelo2)
+plot(residuos, 
+     ylab="Residuos",
+     xlab="UPM + I(UPM^2)",
+     main="Gráfico de resíduos")
+abline(0,0)
+```
+<p>  Observando o gráfico, podemos ver que mesmo com o aumento o valor do eixo x, não aumenta a variabilidade dos dados, então o gráfico é homocedástico.
+
+#Questão 2
+<p>
+```{r}
+distancia <- c(6.25, 12.5, 25.0, 50.0, 100.0)
+primeiro <- c(5, 5, 4, 3, 1)
+segundo <- c(3,2,5,4,2)
+terceiro <- c (4,5,3,2,2)
+quarto <-  c(6,4,0,2,3)
+medias <- c (0,0,0,0,0)
+
+tabela <- data.frame (distancia, primeiro, segundo, terceiro, quarto)
+medias <- c(rowMeans (tabela[,2:5]))
+tabela$medias <- medias
+tabela
+```
+
+Pela tabela, é possível notar que existe uma relação entre a distância das moscas e a média de moscas capturadas (a medida que uma aumenta, a outra diminui). Iremos ajustar uma reta para verificar se essa relação é linear:
+
+```{r}
+plot (tabela$medias~tabela$distancia,
+  xlab="distancia entre as moscas e a armadilha",
+  ylab="media de moscas capturadas",
+  main="gráfico de dispersão com reta de regressão")
+abline (lm(tabela$medias~tabela$distancia))
+```
+
+#Questão 3
+
+
+#Questão 4
+```{r}
+escore <- c(9,13,6,8,10,4,14,8,11,7,9,7,5,14,13,16,10,12,11,14,15,18,7,16,9,9,11,13,15,13,10,11,6,17,14,19,9,11,14,10,16,10,16,14,13,13,9,15,10,11,12,4,14,20)
+resposta <- c(1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+```
+
+```{r}
+ajuste_glm <- glm(resposta ~ escore, family = binomial())
+summary(ajuste_glm)
+
+```
+<p>   A partir dos dados podemos observar que a estimativa do intercepto é 2.4040 e do coeficiente angular é -0.3235, ou seja, quanto maior o seu escore no exame psicológico, maior será sua chance de não ter ocorrência de  sintomas de demência senil. Além disso, o Pr(>|z|) mostra os p valores correspondentes aos z values (quociente da estimativa pelo erro padrão) em uma distrubuição normal, observando os p valores e pela quantidade de * sabemos que o valor 0.00453  se aproxima mais do centro da normal que o valor 0.04369, ou seja, é mais importatnte para a análise que o valor dado pelo intercepto. Por fim, o residual deviance apresenta a falta de ajuste do modelo como um todo e o null deviance é a mesma medida reduzida à apenas o intercepto.   
+
+#Questão 5
+```{r}
+library(car)
+dados <- Duncan
+```
+
