@@ -7,6 +7,32 @@ output: pdf_document
 <p>Nomes:
 <p>     Bruna Umino
 <p>     Beatriz Vianna
-
 #Questão 1
 <p>
+
+#Questão 2
+<p>
+```{r}
+distancia <- c(6.25, 12.5, 25.0, 50.0, 100.0)
+primeiro <- c(5, 5, 4, 3, 1)
+segundo <- c(3,2,5,4,2)
+terceiro <- c (4,5,3,2,2)
+quarto <-  c(6,4,0,2,3)
+medias <- c (0,0,0,0,0)
+
+tabela <- data.frame (distancia, primeiro, segundo, terceiro, quarto)
+medias <- c(rowMeans (tabela[,2:5]))
+tabela$medias <- medias
+tabela
+```
+
+Pela tabela, é possível notar que existe uma relação entre a distância das moscas e a média de moscas capturadas (a medida que uma aumenta, a outra diminui). Iremos ajustar uma reta para verificar se essa relação é linear:
+
+```{r}
+plot (tabela$medias~tabela$distancia,
+  xlab="distancia entre as moscas e a armadilha",
+  ylab="media de moscas capturadas",
+  main="gráfico de dispersão com reta de regressão")
+abline (lm(tabela$medias~tabela$distancia))
+```
+
