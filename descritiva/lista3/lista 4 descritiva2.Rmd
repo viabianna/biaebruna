@@ -75,3 +75,31 @@ plot (tabela$medias~tabela$distancia,
   main="gráfico de dispersão com reta de regressão")
 abline (lm(tabela$medias~tabela$distancia))
 ```
+<p>Ao observar o gráfico obtido e a relação entre os pontos e a reta de regressão, é fácil ver sem mais cálculos que a dispersão dos pontos não é linear, e parece aproximar-se de uma parábola.
+Façamos o gráfico a seguir:
+
+```{r}
+plot(tabela$medias~tabela$distancia, xlab = "distancia entre as moscas e a armadilha", ylab = "media de moscas capturadas", main="Gráfico de dispersão com parábola ajustada")
+modelo1 <- lm(tabela$medias~tabela$distancia)
+modelo2 <- update(modelo1,.~. +I(tabela$distancia^2))
+anova(modelo1,modelo2)
+cf.m2 <- coef(modelo2)
+curve(cf.m2[1]+cf.m2[2]*x+cf.m2[3]*x^2, add=T, lty=2)
+```
+<p>Esta distribuição parece mais próxima do gráfico de dispersão com parábola ajustada.
+Temos que estar atentos ao fato de que há apenas cinco observações, portanto é difícil chegar a dados conclusivos sobre o modelo.
+O que pode-se dizer é que existe uma relação entre a distância da armadilha e a quantidade de moscas capituradas, e que esta relação parece ser quadrática.
+
+#Questão 3
+
+|10 | 11 | 12 | 13 | 14 |
+|------------- | :-------------:| :-------------:| :-------------:|------:|
+| -2 | 26 | -2 | 0 | -4|
+| 0 | -4 | -6 | 4 | 0|
+| -4 | -2 | 2 | -2 | -4|
+| 12 | -6 | 8 | 0 | 4|
+| -2 | 2 | -2 | -4 | -6|
+|  |  | 2 |  | -2|
+|-------------- |-----------|-------------- | -----------|-----------|
+
+
