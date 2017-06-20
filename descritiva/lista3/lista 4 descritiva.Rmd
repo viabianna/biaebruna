@@ -7,8 +7,48 @@ output: pdf_document
 <p>Nomes:
 <p>     Bruna Umino
 <p>     Beatriz Vianna
+
 #Questão 1
 <p>
+
+```{r}
+UPM <- c(100, 100, 125, 125, 150, 150, 175, 175, 200, 200, 225, 225)
+clientes <- c(30, 44, 114, 138, 155, 163, 145, 163, 158, 126, 126, 106)
+```
+
+#1a
+```{r}
+lm(clientes~UPM)
+```
+
+#1b
+```{r}
+modelo1 <- lm(clientes~UPM)
+plot(UPM, clientes, xlab = "UPM", ylab = "número de clientes", main="Gráfico de dispersão com reta ajustada")
+abline(modelo1)
+```
+<p>   Como podemos observar, a reta ajustada não é o melhor modelo para ajustar os dados, pois não se comportam linearmente
+
+#1c
+```{r}
+plot(clientes~UPM, xlab = "UPM", ylab = "número de clientes", main="Gráfico de dispersão com parábola ajustada")
+modelo1 <- lm(clientes~UPM)
+modelo2 <- update(modelo1,.~. +I(UPM^2))
+anova(modelo1,modelo2)
+#abline(modelo1)
+cf.m2 <- coef(modelo2)
+curve(cf.m2[1]+cf.m2[2]*x+cf.m2[3]*x^2, add=T, lty=2)
+```
+
+```{r}
+residuos <- residuals(modelo2)
+plot(residuos, 
+     ylab="Residuos",
+     xlab="UPM + I(UPM^2)",
+     main="Gráfico de resíduos")
+abline(0,0)
+```
+<p>  Observando o gráfico, podemos ver que mesmo com o aumento o valor do eixo x, não aumenta a variabilidade dos dados, então o gráfico é homocedástico.
 
 #Questão 2
 <p>
@@ -36,3 +76,41 @@ plot (tabela$medias~tabela$distancia,
 abline (lm(tabela$medias~tabela$distancia))
 ```
 
+#5c
+```{r}
+library(pander)
+fit1 <- lm(dados$prestige~dados$education+dados$income+dados$type)
+modelo3 <- summary(fit1)
+mod3_coef <- modelo3$coefficients
+colnames(mod3_coef) <- c("Estimativa", "erro padrão", "valor t", "p-valor")
+rownames(mod3_coef) <- c("Intercepto", "education", "income", "typeprof", "typewc")
+pander(mod3_coef)
+```
+<p> Tabela de medidas resumo
+
+|  | Minimo | 1Q | Mediana | 3Q | Máximo |
+|------------- | :-------------:|------:| :-------------:|------:| :-------------:|
+|  | -14.890 | -5.740 | -1.754 | 5.442 | 28.972 |
+
+erro padrão residual: 9.744
+R quadrado multiplo: 0.9131
+R quadrado ajustado: 0.9044
+Estatística F: 105 em 4 com 40 graus de liberdade, p-valor: < 2.2e-16
+
+<p> Observando os dados obtidos na tabela de coeficientes, com o enfoque no p-valor, podemos dizer que todos os valores estimados, com exceção do intercepto, são significativo, pois os p-valores são baixos, ao contrario do valor obtido no intercepto que com 0,96051 temos uma grande chance de aceitar a hipótese, ou seja, o intercepto ser igual a zero. Além disso, o R quadrado múltiplo foi igual à 0.9131, bem próximo de 1, que significa que o modelo foi bem ajustado, sendo que 90% dos dados podem ser explicada pelo modelo.
+
+#5d
+```{r}
+par(mfrow=c(2,2))
+plot(fit1, caption = c("Resíduos x Ajustados", "QQ-Plot Normal",
+                       "Locação e Escala","", "resíduos e alavancagem"))
+```
+
+```{r}
+qqPlot(fit1 ,main = "Gráfico Quantil x Quantil")
+```
+
+<p>   Pela analise de resíduos não existe nenhuma tendência aparente, então a variabilidade parece constante, mostrando uma homocedasticidade e pelos gráficos qqplots, ambos possuem a maior parte dos dados proximos da reta $Y=X$ com apenas alguns outliares, com isso concluimos que o modelo se aproxima de uma normal.
+
+#5e
+<p>  O modelo pode sim ser utilizado, pois analisando os resíduos, encontramos p-valores baixos, além de um elevado valor do R quadrado que nos mostra através dos dados que o modelo é bem ajustado, o que se observa também pelos gráficos plotados, os quais pelo gráfico de resíduos concluimos uma homocedastidade dos dados e pelos qqplots uma aproximação do modelo para uma normal. Assim, podemos dizer que em 1950, o prestígio pode ser explicado pela profissão, pela renda e pela escolaridade. Porém, devemos notar que os dados são antigos, então não é aconselhável utilizar esses resultados para tentar explicar um préstigo nos dias atuais, mas é possível utilizá-lo como base para uma nova modelagem.  
