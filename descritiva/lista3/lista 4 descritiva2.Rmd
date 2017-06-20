@@ -103,7 +103,7 @@ O que pode-se dizer é que existe uma relação entre a distância da armadilha 
 |-------------- |-----------|-------------- | -----------|-----------|
 
 <p>A partir da análise dos valores dos resíduos, é possível notar muitos valores negativos, mais próximos de zero, alguns positivos próximos de zero também e uns poucos positivos mais distantes de zero, como 12 e principalmente 26.
-Este valor, 26, está muito distante da reta de regressão linear em comparação a todos os outros, o que é um forte indicativo de que pode ser um vilão. Se esta observação fosse excluída ao se ajustar a reta, esta reta ficaria um pouco mais para baixo, e os valores de seus resíduos seriam mais próximos de zero.
+<p>Este valor, 26, está muito distante da reta de regressão linear em comparação a todos os outros, o que é um forte indicativo de que pode ser um vilão. Se esta observação fosse excluída ao se ajustar a reta, esta reta ficaria um pouco mais para baixo, e os valores de seus resíduos seriam mais próximos de zero.
 
 #Questão 4
 ```{r}
