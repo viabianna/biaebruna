@@ -18,7 +18,7 @@ clientes <- c(30, 44, 114, 138, 155, 163, 145, 163, 158, 126, 126, 106)
 
 #1a
 ```{r}
-lm(clientes~UPM)
+summary(lm(clientes~UPM))
 ```
 
 #1b
@@ -75,3 +75,67 @@ plot (tabela$medias~tabela$distancia,
   main="gráfico de dispersão com reta de regressão")
 abline (lm(tabela$medias~tabela$distancia))
 ```
+
+#Questão 3
+
+
+#Questão 4
+```{r}
+escore <- c(9,13,6,8,10,4,14,8,11,7,9,7,5,14,13,16,10,12,11,14,15,18,7,16,9,9,11,13,15,13,10,11,6,17,14,19,9,11,14,10,16,10,16,14,13,13,9,15,10,11,12,4,14,20)
+resposta <- c(1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+```
+
+```{r}
+ajuste_glm <- glm(resposta ~ escore, family = binomial())
+summary(ajuste_glm)
+
+```
+<p>   A partir dos dados podemos observar que a estimativa do intercepto é 2.4040 e do coeficiente angular é -0.3235, ou seja, quanto maior o seu escore no exame psicológico, maior será sua chance de não ter ocorrência de  sintomas de demência senil. Além disso, o Pr(>|z|) mostra os p valores correspondentes aos z values (quociente da estimativa pelo erro padrão) em uma distrubuição normal, observando os p valores e pela quantidade de * sabemos que o valor 0.00453  se aproxima mais do centro da normal que o valor 0.04369, ou seja, é mais importatnte para a análise que o valor dado pelo intercepto. Por fim, o residual deviance apresenta a falta de ajuste do modelo como um todo e o null deviance é a mesma medida reduzida à apenas o intercepto.   
+
+#Questão 5
+```{r}
+library(car)
+dados <- Duncan
+```
+
+
+#5c
+```{r}
+library(pander)
+fit1 <- lm(dados$prestige~dados$education+dados$income+dados$type)
+modelo3 <- summary(fit1)
+mod3_coef <- modelo3$coefficients
+colnames(mod3_coef) <- c("Estimativa", "erro padrão", "valor t", "p-valor")
+rownames(mod3_coef) <- c("Intercepto", "education", "income", "typeprof", "typewc")
+pander(mod3_coef)
+```
+<p> Tabela de medidas resumo
+
+|  | Minimo | 1Q | Mediana | 3Q | Máximo |
+|------------- | :-------------:|------:| :-------------:|------:| :-------------:|
+|  | -14.890 | -5.740 | -1.754 | 5.442 | 28.972 |
+
+erro padrão residual: 9.744
+R quadrado multiplo: 0.9131
+R quadrado ajustado: 0.9044
+Estatística F: 105 em 4 com 40 graus de liberdade, p-valor: < 2.2e-16
+
+<p> Observando os dados obtidos na tabela de coeficientes, com o enfoque no p-valor, podemos dizer que todos os valores estimados, com exceção do intercepto, são significativo, pois os p-valores são baixos, ao contrario do valor obtido no intercepto que com 0,96051 temos uma grande chance de aceitar a hipótese, ou seja, o intercepto ser igual a zero. Além disso, o R quadrado múltiplo foi igual à 0.9131, bem próximo de 1, que significa que o modelo foi bem ajustado, sendo que 90% dos dados podem ser explicada pelo modelo.
+
+#5d
+```{r}
+par(mfrow=c(2,2))
+plot(fit1, caption = c("Resíduos x Ajustados", "QQ-Plot Normal",
+                       "Locação e Escala","", "resíduos e alavancagem"))
+```
+
+```{r}
+qqPlot(fit1 ,main = "Gráfico Quantil x Quantil")
+```
+
+<p>   Pela analise de resíduos não existe nenhuma tendência aparente, então a variabilidade parece constante, mostrando uma homocedasticidade e pelos gráficos qqplots, ambos possuem a maior parte dos dados proximos da reta $Y=X$ com apenas alguns outliares, com isso concluimos que o modelo se aproxima de uma normal.
+
+#5e
+<p>  O modelo pode sim ser utilizado, pois analisando os resíduos, encontramos p-valores baixos, além de um elevado valor do R quadrado que nos mostra através dos dados que o modelo é bem ajustado, o que se observa também pelos gráficos plotados, os quais pelo gráfico de resíduos concluimos uma homocedastidade dos dados e pelos qqplots uma aproximação do modelo para uma normal. Assim, podemos dizer que em 1950, o prestígio pode ser explicado pela profissão, pela renda e pela escolaridade. Porém, devemos notar que os dados são antigos, então não é aconselhável utilizar esses resultados para tentar explicar um préstigo nos dias atuais, mas é possível utilizá-lo como base para uma nova modelagem.  
+
+
