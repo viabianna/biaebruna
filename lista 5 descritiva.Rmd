@@ -1,0 +1,29 @@
+---
+title: "lista 5 descritiva"
+output: pdf_document
+---
+<p>#Lista 3 - Estatística Descritiva
+<p>#Professora: Márcia D'Elia Branco
+<p>Nomes:
+<p>     Bruna Umino            9793349
+<p>     Beatriz Vianna
+
+
+#Questão 2
+
+#2a
+<p> Anexada no final da lista
+
+#2b
+<p> Anexada no final da lista
+
+#2c
+```{r}
+x <- seq(from=0, to=1, by=0.001)
+priori <- dbeta(x,3,12)
+posteriori <- dbeta(x,7,28)
+plot(posteriori~x, lty="dashed", type="l", ylab = " ")
+lines(priori~x)
+legend("topright", legend=c("Priori","Posteriori"), lty=c(1,2), lwd=2, bty="n")
+```
+
