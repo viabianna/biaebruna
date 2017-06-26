@@ -7,6 +7,99 @@ output: pdf_document
 <p>Nomes:
 <p>     Bruna Umino            9793349
 <p>     Beatriz Vianna
+#Questão 1
+#1a
+```{r}
+#IC
+ic <- function(x, sigma=1, n){
+  xbarra <- mean(x)
+  z=qnorm(0.95)
+  ep=sigma/sqrt(n)
+  return(c(xbarra-z*ep,xbarra+z*ep))
+}
+
+```
+
+```{r}
+#intervalo de confiança para n=10
+ic(rnorm(10), 1, 10)
+```
+
+```{r}
+#intervalo de confiança para n=20
+ic(rnorm(20), 1, 20)
+```
+
+```{r}
+#intervalo de confiança para n=100
+ic(rnorm(100), 1, 100)
+```
+
+```{r}
+#Porcentacem de sucesso para n=10
+#IC
+ic <- function(x, sigma=1, n){
+  xbarra <- mean(x)
+  z=qnorm(0.95)
+  ep=sigma/sqrt(n)
+  return(c(xbarra-z*ep,xbarra+z*ep))
+}
+#réplicas
+R <- 500
+I=rep(0,R)
+media <- 0
+for (k in 1:500){
+  x <- rnorm(10)
+  IC<-ic(x, 1, 10)
+  if (media>=IC[1] & media<=IC[2])
+    I[k] <- 1
+}
+sum(I)/R
+```
+
+```{r}
+#Porcentacem de sucesso para n=20
+#IC
+ic <- function(x, sigma=1, n){
+  xbarra <- mean(x)
+  z=qnorm(0.95)
+  ep=sigma/sqrt(n)
+  return(c(xbarra-z*ep,xbarra+z*ep))
+}
+#réplicas
+R <- 500
+I=rep(0,R)
+media <- 0
+for (k in 1:500){
+  x <- rnorm(20)
+  IC<-ic(x, 1, 20)
+  if (media>=IC[1] & media<=IC[2])
+    I[k] <- 1
+}
+sum(I)/R
+```
+
+```{r}
+#Porcentacem de sucesso para n=100
+#IC
+ic <- function(x, sigma=1, n){
+  xbarra <- mean(x)
+  z=qnorm(0.95)
+  ep=sigma/sqrt(n)
+  return(c(xbarra-z*ep,xbarra+z*ep))
+}
+#réplicas
+R <- 500
+I=rep(0,R)
+media <- 0
+for (k in 1:500){
+  x <- rnorm(100)
+  IC<-ic(x, 1, 100)
+  if (media>=IC[1] & media<=IC[2])
+    I[k] <- 1
+}
+sum(I)/R
+```
 
 
 #Questão 2
