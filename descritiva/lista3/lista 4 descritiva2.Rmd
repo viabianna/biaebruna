@@ -1,10 +1,8 @@
 ---
-title: "lista 4 - descritiva"
+title: "lista 4 - Estatística descritiva"
 output: pdf_document
 ---
-<p>#Lista 4 - Estatística Descritiva
 <p>#Professora: Márcia D'Elia Branco
-<p>Nomes:
 <p>     Bruna Umino
 <p>     Beatriz Vianna
 
@@ -16,26 +14,27 @@ UPM <- c(100, 100, 125, 125, 150, 150, 175, 175, 200, 200, 225, 225)
 clientes <- c(30, 44, 114, 138, 155, 163, 145, 163, 158, 126, 126, 106)
 ```
 
-#1a
+##1a
 ```{r}
 summary(lm(clientes~UPM))
 ```
 
-#1b
+##1b
 ```{r}
 modelo1 <- lm(clientes~UPM)
-plot(UPM, clientes, xlab = "UPM", ylab = "número de clientes", main="Gráfico de dispersão com reta ajustada")
+plot(UPM, clientes, xlab = "UPM", ylab = "número de clientes", 
+     main="Gráfico de dispersão com reta ajustada")
 abline(modelo1)
 ```
 <p>   Como podemos observar, a reta ajustada não é o melhor modelo para ajustar os dados, pois não se comportam linearmente
 
-#1c
+##1c
 ```{r}
-plot(clientes~UPM, xlab = "UPM", ylab = "número de clientes", main="Gráfico de dispersão com parábola ajustada")
+plot(clientes~UPM, xlab = "UPM", ylab = "número de clientes", 
+     main="Gráfico de dispersão com parábola ajustada")
 modelo1 <- lm(clientes~UPM)
 modelo2 <- update(modelo1,.~. +I(UPM^2))
 anova(modelo1,modelo2)
-#abline(modelo1)
 cf.m2 <- coef(modelo2)
 curve(cf.m2[1]+cf.m2[2]*x+cf.m2[3]*x^2, add=T, lty=2)
 ```
@@ -75,16 +74,14 @@ plot (tabela$medias~tabela$distancia,
   main="gráfico de dispersão com reta de regressão")
 abline (lm(tabela$medias~tabela$distancia))
 ```
-<<<<<<< HEAD
 
-#Questão 3
 
-=======
 <p>Ao observar o gráfico obtido e a relação entre os pontos e a reta de regressão, é fácil ver sem mais cálculos que a dispersão dos pontos não é linear, e parece aproximar-se de uma parábola.
 Façamos o gráfico a seguir:
 
 ```{r}
-plot(tabela$medias~tabela$distancia, xlab = "distancia entre as moscas e a armadilha", ylab = "media de moscas capturadas", main="Gráfico de dispersão com parábola ajustada")
+plot(tabela$medias~tabela$distancia, xlab = "distancia entre as moscas e a armadilha",
+     ylab = "media de moscas capturadas", main="Gráfico de dispersão com parábola ajustada")
 modelo1 <- lm(tabela$medias~tabela$distancia)
 modelo2 <- update(modelo1,.~. +I(tabela$distancia^2))
 anova(modelo1,modelo2)
@@ -108,13 +105,15 @@ O que pode-se dizer é que existe uma relação entre a distância da armadilha 
 |-------------- |-----------|-------------- | -----------|-----------|
 
 <p>A partir da análise dos valores dos resíduos, é possível notar muitos valores negativos, mais próximos de zero, alguns positivos próximos de zero também e uns poucos positivos mais distantes de zero, como 12 e principalmente 26.
-Este valor, 26, está muito distante da reta de regressão linear em comparação a todos os outros, o que é um forte indicativo de que pode ser um vilão. Se esta observação fosse excluída ao se ajustar a reta, esta reta ficaria um pouco mais para baixo, e os valores de seus resíduos seriam mais próximos de zero.
->>>>>>> 62a40923775f1e8fc81847c0bd75c0560fe38452
+<p>Este valor, 26, está muito distante da reta de regressão linear em comparação a todos os outros, o que é um forte indicativo de que pode ser um vilão. Se esta observação fosse excluída ao se ajustar a reta, esta reta ficaria um pouco mais para baixo, e os valores de seus resíduos seriam mais próximos de zero.
 
 #Questão 4
 ```{r}
-escore <- c(9,13,6,8,10,4,14,8,11,7,9,7,5,14,13,16,10,12,11,14,15,18,7,16,9,9,11,13,15,13,10,11,6,17,14,19,9,11,14,10,16,10,16,14,13,13,9,15,10,11,12,4,14,20)
-resposta <- c(1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+escore <- c(9,13,6,8,10,4,14,8,11,7,9,7,5,14,13,16,10,12,11,14,15,18,7,
+            16,9,9,11,13,15,13,10,11,6,17,14,19,9,11,14,10,16,10,16,14,
+            13,13,9,15,10,11,12,4,14,20)
+resposta <- c(1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+              0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
 ```
 
 ```{r}
@@ -122,17 +121,58 @@ ajuste_glm <- glm(resposta ~ escore, family = binomial())
 summary(ajuste_glm)
 
 ```
-<p>   A partir dos dados podemos observar que a estimativa do intercepto é 2.4040 e do coeficiente angular é -0.3235, ou seja, quanto maior o seu escore no exame psicológico, maior será sua chance de não ter ocorrência de  sintomas de demência senil. Além disso, o Pr(>|z|) mostra os p valores correspondentes aos z values (quociente da estimativa pelo erro padrão) em uma distrubuição normal, observando os p valores e pela quantidade de * sabemos que o valor 0.00453  se aproxima mais do centro da normal que o valor 0.04369, ou seja, é mais importatnte para a análise que o valor dado pelo intercepto. Por fim, o residual deviance apresenta a falta de ajuste do modelo como um todo e o null deviance é a mesma medida reduzida à apenas o intercepto.   
+<p>   A partir dos dados podemos observar que a estimativa do intercepto é 2.4040 e do coeficiente angular é -0.3235, ou seja, quanto maior o seu escore no exame psicológico, maior será sua chance de não ter ocorrência de  sintomas de demência senil. Além disso, o Pr(>|z|) mostra os p valores correspondentes aos z values (quociente da estimativa pelo erro padrão) em uma distrubuição normal, observando os p valores e pela quantidade de asteriscos sabemos a importância do valor estimado pois quanto menor esse valor (e maior a quantidade de asteriscos indicativos), maior a chance de rejeitar a hipótese nula sendo assim o valor estimado correspondente (ao intercepto ou ao escore) é mais importante. Por fim, o residual deviance apresenta a falta de ajuste do modelo como um todo e o null deviance é a mesma medida reduzida à apenas o intercepto.   
 
 #Questão 5
 ```{r}
 library(car)
 dados <- Duncan
-<<<<<<< HEAD
 ```
 
+##5a
+<p>O conjunto de dados Duncan é uma tabela com 45 observações de 45 profissões diferentes relacionadas a quatro variáveis:
+<p>- _type (tipo)_ - tipo do trabalho, dividido em três grupos: profissional e gerente; blue collar (trabalhos manuais); white collar (trabalhos de escritórios)
+<p>- _income (renda)_ - varia de 0 a 100 e corresponde à porcentagem de homens nessa profissão que recebiam mais de $3500 em 1950;  
+<p>- _education (educação)_ - varia de 0 a 100 e corresponde à porcentagem de homens nessa profissão que tinham ensino médio completo;  
+<p>- _prestige (prestígio)_ - também varia de 0 a 100 e apresenta a porcentagem de "bom" e "excelente" que esta profissão recebeu no estudo NORC (um estudo no qual voluntários ranqueam as profissões com base em características como renda estimada, liberdade de escolha e o quão interessante é o trabalho).
 
-#5c
+##5b
+
+```{r}
+dados <- dados[order(dados$prestige, decreasing=TRUE),]
+
+plot(dados$income~dados$prestige, type="o", col="darkgray", ylab=" ",xlab="prestígio",
+     pch=16, main = "Prestígio por renda e educação")
+par(new=TRUE)
+plot(dados$education~dados$prestige, axes=FALSE, type="o", col="black", ann=FALSE, pch=18)
+axis(4)
+```
+<p>No gráfico acima, procuramos a _renda_ (em cinza escuro, com escala à esquerda) e a _educação_ (preto, com escala à direita) como indicadores de _prestígio_. Como esperado, notamos uma forte associação (profissões que exigem maior educação e que pagam melhor são consideradas de maior prestígio), mas podemos observar algumas profissões que têm alto prestígio mesmo com baixa renda ou baixo nível de educação.
+<p>Para isso, vamos observar as 15 profissões com maior prestígio:
+```{r}
+dados[1:16,]
+```
+
+<p>A partir desta tabela, podemos notar que a profissão "ministro" tem renda baixa (apenas 21% dos profissionais de sexo masculino recebiam mais de $3500), comparado a outras profissões de mesmo prestígio, e que donos de fábrica e empreiteiro mesmo com menor educação (56% e 45% respectivamente, com ensino médio concluído) têm renda e prestígio similares às de profissões que contam com 90% dos profissionais tendo ensino superior completo.
+<p>
+<p>Vamos analisar agora as o prestígio das profissões segundo o tipo:
+```{r}
+library(psych)
+describeBy (dados$prestige, group= dados$type, na.rm=TRUE, skew=FALSE)
+```
+
+```{r}
+library(ggplot2)
+ggplot(dados, aes(x=as.factor(type),
+                  y=prestige))+
+  geom_boxplot()+
+  labs(x="tipo", y="prestígio")+
+  ggtitle("Prestígio por tipo de profissão")
+```
+
+<p>Como esperado, os trabalhos manuais têm menos prestígio, mas também são os que apresentam maior variação. Os trabalhos com maior prestígios são os mais profissionalizados. Os trabalhos de escritório apresentam menor variação, estando quase todos em torno de 32% de prestígio, exceto por dois outliers: repórter, com 52% de prestígio, e balconista, com 16%. Dentre os trabalhos profissionalizados, gerente de loja é oúnico outlier, apresentando 52% de prestígio, e dentre os trabalhadores manuais, o outlier é engenheiro de trem (maquinista) com 67% de prestígio.
+
+##5c
 ```{r}
 library(pander)
 fit1 <- lm(dados$prestige~dados$education+dados$income+dados$type)
@@ -155,7 +195,7 @@ Estatística F: 105 em 4 com 40 graus de liberdade, p-valor: < 2.2e-16
 
 <p> Observando os dados obtidos na tabela de coeficientes, com o enfoque no p-valor, podemos dizer que todos os valores estimados, com exceção do intercepto, são significativo, pois os p-valores são baixos, ao contrario do valor obtido no intercepto que com 0,96051 temos uma grande chance de aceitar a hipótese, ou seja, o intercepto ser igual a zero. Além disso, o R quadrado múltiplo foi igual à 0.9131, bem próximo de 1, que significa que o modelo foi bem ajustado, sendo que 90% dos dados podem ser explicada pelo modelo.
 
-#5d
+##5d
 ```{r}
 par(mfrow=c(2,2))
 plot(fit1, caption = c("Resíduos x Ajustados", "QQ-Plot Normal",
@@ -168,10 +208,8 @@ qqPlot(fit1 ,main = "Gráfico Quantil x Quantil")
 
 <p>   Pela analise de resíduos não existe nenhuma tendência aparente, então a variabilidade parece constante, mostrando uma homocedasticidade e pelos gráficos qqplots, ambos possuem a maior parte dos dados proximos da reta $Y=X$ com apenas alguns outliares, com isso concluimos que o modelo se aproxima de uma normal.
 
-#5e
+##5e
 <p>  O modelo pode sim ser utilizado, pois analisando os resíduos, encontramos p-valores baixos, além de um elevado valor do R quadrado que nos mostra através dos dados que o modelo é bem ajustado, o que se observa também pelos gráficos plotados, os quais pelo gráfico de resíduos concluimos uma homocedastidade dos dados e pelos qqplots uma aproximação do modelo para uma normal. Assim, podemos dizer que em 1950, o prestígio pode ser explicado pela profissão, pela renda e pela escolaridade. Porém, devemos notar que os dados são antigos, então não é aconselhável utilizar esses resultados para tentar explicar um préstigo nos dias atuais, mas é possível utilizá-lo como base para uma nova modelagem.  
 
 
-=======
-```
->>>>>>> 62a40923775f1e8fc81847c0bd75c0560fe38452
+
