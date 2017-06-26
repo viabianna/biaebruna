@@ -6,11 +6,12 @@ output: pdf_document
 <p>#Professora: Márcia D'Elia Branco
 <p>Nomes:
 <p>     Bruna Umino            9793349
-<p>     Beatriz Vianna
+<p>     Beatriz Vianna         4895517
 #Questão 1
-#1a
+##1a
 ```{r}
-#IC
+#função que gera intervalo de 90% de confiança:
+
 ic <- function(x, sigma=1, n){
   xbarra <- mean(x)
   z=qnorm(0.95)
@@ -36,81 +37,164 @@ ic(rnorm(100), 1, 100)
 ```
 
 ```{r}
+#Função que gera "R" amostras normais (0,1) de tamanho "n" e dá a proporção de intervalos que contém zero.
+
+contasucessos_normal <- function (R, n){
+  media <- 0
+  contador <- 0
+  for (k in 1:R){
+    x <- rnorm(n)
+    IC<-ic(x, 1, n)
+    if (media>=IC[1] & media<=IC[2]){
+      contador <- contador +1}
+  } 
+  return(contador/R)
+}
+```
+
+
+```{r}
 #Porcentacem de sucesso para n=10
-#IC
-ic <- function(x, sigma=1, n){
-  xbarra <- mean(x)
-  z=qnorm(0.95)
-  ep=sigma/sqrt(n)
-  return(c(xbarra-z*ep,xbarra+z*ep))
-}
-#réplicas
-R <- 500
-I=rep(0,R)
-media <- 0
-for (k in 1:500){
-  x <- rnorm(10)
-  IC<-ic(x, 1, 10)
-  if (media>=IC[1] & media<=IC[2])
-    I[k] <- 1
-}
-sum(I)/R
+
+contasucessos_normal (500, 10) * 100
+
 ```
 
 ```{r}
 #Porcentacem de sucesso para n=20
-#IC
-ic <- function(x, sigma=1, n){
-  xbarra <- mean(x)
-  z=qnorm(0.95)
-  ep=sigma/sqrt(n)
-  return(c(xbarra-z*ep,xbarra+z*ep))
-}
-#réplicas
-R <- 500
-I=rep(0,R)
-media <- 0
-for (k in 1:500){
-  x <- rnorm(20)
-  IC<-ic(x, 1, 20)
-  if (media>=IC[1] & media<=IC[2])
-    I[k] <- 1
-}
-sum(I)/R
+
+contasucessos_normal (500, 20) * 100
 ```
 
 ```{r}
 #Porcentacem de sucesso para n=100
-#IC
-ic <- function(x, sigma=1, n){
-  xbarra <- mean(x)
-  z=qnorm(0.95)
-  ep=sigma/sqrt(n)
-  return(c(xbarra-z*ep,xbarra+z*ep))
-}
-#réplicas
-R <- 500
-I=rep(0,R)
-media <- 0
-for (k in 1:500){
-  x <- rnorm(100)
-  IC<-ic(x, 1, 100)
-  if (media>=IC[1] & media<=IC[2])
-    I[k] <- 1
-}
-sum(I)/R
+
+contasucessos_normal (500, 100) * 100
+```
+\pagebreak
+
+##1b
+
+```{r}
+#Intervalo de confiança para n=10
+
+ic(rexp(10, 1), 1, 10) 
+```
+
+```{r}
+#Intervalo de confiança para n=20
+
+ic(rexp(20, 1), 1, 20) 
+```
+
+```{r}
+#Intervalo de confiança para n=100
+
+ic(rexp(100, 1), 1, 100) 
 ```
 
 
+```{r}
+#Gerar 500 amostras exponenciais (1) de tamanho 10 
+
+n<-10
+media <- 1
+contador <- 0
+medias_dez <- rep(0, 500)
+for (k in 1:500){
+  x <- rexp(n, 1)
+  IC<-ic(x, 1, n)
+  #salvar em um vetor as médias encontradas
+  medias_dez [k]<-mean(x)
+  #contar quantos intervalos contém 1:
+  if (media>=IC[1] & media<=IC[2]){
+    contador <- contador +1}
+}
+#Porcentagem de intervalos que contém a média:
+cat(contador/5, "%")
+```
+
+```{r}
+#Gerar 500 amostras exponenciais (1) de tamanho 20 
+
+n<-10
+media <- 1
+contador <- 0
+medias_vinte <- rep(0, 500)
+for (k in 1:500){
+  x <- rexp(n, 1)
+  IC<-ic(x, 1, n)
+  #salvar em um vetor as médias encontradas
+  medias_vinte [k]<-mean(x)
+  #contar quantos intervalos contém 1:
+  if (media>=IC[1] & media<=IC[2]){
+    contador <- contador +1}
+}
+#Porcentagem de intervalos que contém a média:
+cat(contador/5, "%")
+```
+
+```{r}
+#Gerar 500 amostras exponenciais (1) de tamanho 100 
+
+n<-100
+media <- 1
+contador <- 0
+medias_cem <- rep(0, 500)
+for (k in 1:500){
+  x <- rexp(n, 1)
+  IC<-ic(x, 1, n)
+  #salvar em um vetor as médias encontradas
+  medias_cem [k]<-mean(x)
+  #contar quantos intervalos contém 1:
+  if (media>=IC[1] & media<=IC[2]){
+    contador <- contador +1}
+}
+#Porcentagem de intervalos que contém a média:
+cat(contador/5, "%")
+```
+\pagebreak
+
+##1c
+
+```{r}
+#Histograma para a média de 500 intervalos feitos com amostras de tamanho 10
+#geradas aleatoriamente com distribuição exponencial (1)
+hist(medias_dez,
+  xlab= "médias",
+  ylab= "frequência",
+  main= "histograma das médias para n=10")
+```
+\pagebreak
+```{r}
+#Histograma para a média de 500 intervalos feitos com amostras de tamanho 20
+#geradas aleatoriamente com distribuição exponencial (1)
+hist(medias_vinte,
+  xlab= "médias",
+  ylab= "frequência",
+  main= "histograma das médias para n=20")
+```
+
+\pagebreak
+```{r}
+#Histograma para a média de 500 intervalos feitos com amostras de tamanho 100
+#geradas aleatoriamente com distribuição exponencial (1)
+hist(medias_cem,
+  xlab= "médias",
+  ylab= "frequência",
+  main= "histograma das médias para n=100")
+```
+<p>
+
+Podemos observar nos histogramas que quanto maior o tamanho da amostra observada, mais a distribuição das suas médias se aproxima de uma normal.<p> Uma amostra pequena de distribuição exponencial gerada aleatoriamente possivelmente apresentará mais valores à esquerda da média verdadeira que à direita, devido à sua frequência, o que acaba deslocando o gráfico gerado pois numa amostra pequena será mais fácil encontrar médias mais baixas que a verdadeira. Já quando temos uma amostra maior, a distribuição das médias encontradas será mais simétrica e irá se aproximar de uma normal.
+
+\pagebreak
+
 #Questão 2
 
-#2a
-<p> Anexada no final da lista
+As questões (2a), (2b) e (2d) estão anexadas ao final da lista.
 
-#2b
-<p> Anexada no final da lista
-
-#2c
+##2c
 ```{r}
 x <- seq(from=0, to=1, by=0.001)
 priori <- dbeta(x,3,12)
